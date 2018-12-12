@@ -1,0 +1,26 @@
+Most free servers have limited storage space, this could be a problem for video storage
+
+Solution: Limit file size?
+
+_______________________________________________
+
+	[Free Hosting]
+
+https://www.freehosting.com/
+
+Free, which is a plus.
+
+10 GB disk space.
+
+
+______________________________________________
+
+	[Google Firebase]
+
+https://firebase.google.com/
+
+Easy integration for Android and iOS, also free
+
+Google, so it's widely used and probably well-supported
+
+Uses a NoSQL database, will have to learn

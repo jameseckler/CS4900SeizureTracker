@@ -1,0 +1,71 @@
+	[Apache Cordova (PhoneGap)]
+
+Security: https://cordova.apache.org/docs/en/latest/guide/appdev/security/
+
+Pros:
+	Very popular
+	Open source
+	HTML5/CSS/JavaScript
+	Large plugin library
+
+Cons:
+	Prone to most security issues involved with web development
+	Hybrid development means having to test for bugs in both Android and iOS
+
+______________________________________________
+
+	[Xamarin]
+
+Pros:
+	iPhone/Android development
+
+Cons:
+	Trouble with camera access (Could affect picture/video functionality)
+	C#
+
+______________________________________________
+
+	[Corona SDK]
+
+Pros:
+	Speed/portability focus
+
+Cons:
+	Seems focused towards game development
+	Would have to learn Lua
+
+______________________________________________
+
+	[Ionic]
+
+Pros:
+	Used by large corporations
+	Hybrid development for iOS/Android
+	
+Cons:
+	Hard to build in-app navigation
+
+
+______________________________________________
+	
+	[Native Development]
+
+Pros:
+	Easier access to device-specific components
+
+Cons:
+	Having to develop seperate apps for each operating system
+
+
+______________________________________________
+
+	[Firebase]
+
+https://firebase.google.com
+
+Pros:
+	Server/database/cloud storage included
+	By Google, widely used
+
+Con:
+	Some complaints for larger paying customers
