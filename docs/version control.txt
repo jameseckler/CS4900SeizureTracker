@@ -1,0 +1,5 @@
+Version control will be handled with Git through Android Studio.
+
+Git repository: https://github.com/jameseckler/CS4900SeizureTracker
+
+Local changes should be made on a branch of master. Pushed changes must pass all tests before merging with master.
