@@ -2,8 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 12380,
+  "packagerPid": 9212,
   "expoServerNgrokUrl": "https://zd-kjq.anonymous.seizuretracker.exp.direct",
   "packagerNgrokUrl": "https://packager.zd-kjq.anonymous.seizuretracker.exp.direct",
-  "ngrokPid": 17208
+  "ngrokPid": 7744,
+  "webpackServerPort": null
 }
