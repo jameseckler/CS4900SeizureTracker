@@ -4,6 +4,8 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
+import * as Functions from './Functions';
+
 class VetHome extends Component {
     // Buttons for vet home screen
 }
