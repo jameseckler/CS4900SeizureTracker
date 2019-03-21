@@ -1,7 +1,7 @@
 export function getPetList(OwnerID) {
     return (
-        <ScrollView>
+        <FlatList>
             
-        </ScrollView>
+        </FlatList>
     );
 };
