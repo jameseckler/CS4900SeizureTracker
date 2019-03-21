@@ -38,15 +38,23 @@ class DashboardScreen extends Component{
 }
 
 class PetListScreen extends Component {
-  // Pet List (Using ScrollView) that routes to pet info screen
-
-  // Add Pet Button
+  render() {
+    return (
+      // Pet List (Using ScrollView) that routes to pet info screen
+    
+      <Button title="+"/> // Add Pet Button
+    );
+  }
 }
 
 class AddPetScreen extends Component {
-  // Fields for all pet info
-
-  // Submit button
+  render() {
+    return (
+      // Fields for all pet info
+    
+      <Button title="Submit"/> // Submit button
+    );
+  }
 }
 
 class PetInfoScreen extends Component {
@@ -56,9 +64,13 @@ class PetInfoScreen extends Component {
 }
 
 class VetListScreen extends Component {
-  // Vet List (ScrollView) that routes to vet info
+  render() {
+    return (
+      // Vet List (ScrollView) that routes to vet info
 
-  <Button title="+"/>
+      <Button title="+"/> // Add vet button
+    );
+  }
 }
 
 class VetInfoScreen extends Component {
