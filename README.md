@@ -25,6 +25,8 @@ Refer to test plan.pdf for final testing specifications
 
 ### Unit tests
 
+Unit tests are run using [Jest](https://jestjs.io/docs/en/tutorial-react-native). Tests are written in the `SeizureTracker\__tests__` directory and are run using the command `npm test`.
+
 ### Functional tests
 
 ### System tests
