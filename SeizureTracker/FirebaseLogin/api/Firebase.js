@@ -51,12 +51,14 @@ class Firebase {
           resolve(true);
           const fbRootRefFS = firebase.firestore();
           const userID = info.user.uid;
+          const linkID = userID.slice(-9);
           const userRef = fbRootRefFS.collection('users').doc(userID);
           userRef.set({
             email,
             firstName,
             lastName,
             isVet,
+            linkID,
           });
         }
       });
