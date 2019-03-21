@@ -4,6 +4,7 @@ import Login from './screens/Login';
 import Register from './screens/Register';
 import ForgotPassword from './screens/ForgotPassword';
 import { w } from './api/Dimensions';
+import firebase from "firebase";
 
 const background = require('./assets/background.png');
 
@@ -18,7 +19,31 @@ export default class FirebaseLogin extends Component {
   };
 
   userSuccessfullyLoggedIn = (user) => {
-    this.props.navigation.navigate('Welcome');
+
+  const curUser = firebase.auth().currentUser;
+  const fb = firebase.firestore();
+  const userID = curUser.uid;
+
+  fb.collection('users').doc(userID).get()
+    .then(doc => {
+      const userData = doc.data();
+      if (!doc.exists) {
+        console.log('No such document!');
+      } else {
+        console.log('Document data:', doc.data());
+      }
+
+      if(userData.isVet === false){
+        this.props.navigation.navigate('ClientHome');
+      }else{
+        this.props.navigation.navigate('VetHome');
+      }
+      
+    })
+    .catch(err => {
+      console.log('Error getting document', err);
+    });
+
   };
 
   render() {

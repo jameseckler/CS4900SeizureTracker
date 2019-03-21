@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import firebase from 'firebase';
 import 'firebase/firestore';
 import FirebaseLogin from "./FirebaseLogin";
+import ClientHome from "./ClientScreens";
+import VetHome from "./VetScreens";
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
 export default class App extends React.Component {
@@ -18,6 +20,7 @@ export default class App extends React.Component {
       messagingSenderId: "934155972638"
     };
     firebase.initializeApp(config);
+    const fb = firebase.firestore();
   }
 
   render() {
@@ -83,8 +86,8 @@ for (let i = 0; i < highestTimeoutId; i++) {
 
 const AppSwitchNavigator = createSwitchNavigator({
   FirebaseLogin: { screen: FirebaseLogin},
-  Welcome: { screen: WelcomeScreen },
-  Dashboard: { screen: DashboardScreen }
+  ClientHome: { screen: ClientHome },
+  VetHome: { screen: VetHome }
 });
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
