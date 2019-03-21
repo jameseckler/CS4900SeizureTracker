@@ -5,9 +5,9 @@ import 'firebase/firestore';
 import FirebaseLogin from "./FirebaseLogin";
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
-import * as ClientScreens from 'client_screens.js';
-import * as VetScreens from 'vet_screens.js';
-import * as Functions from './Functions';
+import * as ClientScreens from './client_screens.js';
+import * as VetScreens from './vet_screens.js';
+import getPetList from './Functions/getpetlist.js';
 
 export default class App extends React.Component {
 

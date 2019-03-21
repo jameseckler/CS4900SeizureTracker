@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
-import * as Functions from "./Functions";
+import getPetList from './Functions/getpetlist.js';
 
 class DashboardScreen extends Component{
 
