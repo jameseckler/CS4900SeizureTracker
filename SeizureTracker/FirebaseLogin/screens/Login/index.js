@@ -28,7 +28,7 @@ export default class Login extends Component {
       if(email !== '' && password !== ''){
         this.loginToFireBase(email, password);
       } else {
-        console.warn('Email and password required to log in')
+        console.warn('Fill up all fields')
       }
     });
   };

@@ -26,7 +26,7 @@ class Firebase {
     })
   };
 
-  createFirebaseAccount = (name, email, password) => {
+  createFirebaseAccount = (firstName, lastName, email, password, isVet) => {
     return new Promise(resolve => {
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(error => {
         switch (error.code) {
@@ -46,7 +46,7 @@ class Firebase {
       }).then(info => {
         if (info) {
           firebase.auth().currentUser.updateProfile({
-            displayName: name
+            displayName: firstName
           });
           resolve(true);
           const fbRootRefFS = firebase.firestore();
@@ -54,7 +54,9 @@ class Firebase {
           const userRef = fbRootRefFS.collection('users').doc(userID);
           userRef.set({
             email,
-            name,
+            firstName,
+            lastName,
+            isVet,
           });
         }
       });

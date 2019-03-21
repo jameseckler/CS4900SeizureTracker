@@ -5,7 +5,7 @@ import {w, h, totalSize} from '../../api/Dimensions';
 import InputField from '../../components/InputField';
 import Continue from './Continue';
 import Firebase from "../../api/Firebase";
-import firebase from 'firebase';
+import { CheckBox } from 'react-native-elements'
 
 const email = require('../../assets/email.png');
 const password = require('../../assets/password.png');
@@ -19,31 +19,35 @@ export default class Register extends Component {
     isPasswordCorrect: false,
     isRepeatCorrect: false,
     isCreatingAccount: false,
+    checked: false,
   };
 
   createUserAccount = () => {
-    const name = this.name.getInputValue();
+    const firstName = this.firstName.getInputValue();
+    const lastName = this.lastName.getInputValue();
     const email = this.email.getInputValue();
     const password = this.password.getInputValue();
     const repeat = this.repeat.getInputValue();
+    const isVet = this.state.checked;
 
     this.setState({
-      isNameCorrect: name === '',
+      isNameCorrect: firstName === '',
+      isNameCorrect: lastName === '',
       isEmailCorrect: email === '',
       isPasswordCorrect: password === '',
       isRepeatCorrect: repeat === '' || repeat !== password,
     }, () => {
-      if(name !== '' && email !== '' && password !== '' && (repeat !== '' && repeat === password)){
-        this.createFireBaseAccount(name, email, password);
+      if(firstName !== '' && lastName !== '' && email !== '' && password !== '' && (repeat !== '' && repeat === password)){
+        this.createFireBaseAccount(firstName, lastName, email, password, isVet);
       } else {
         console.warn('Fill up all fields correctly');
       }
     })
   };
 
-  createFireBaseAccount = (name, email, password) => {
+  createFireBaseAccount = (firstName, lastName, email, password, isVet) => {
     this.setState({ isCreatingAccount: true });
-    Firebase.createFirebaseAccount(name, email, password)
+    Firebase.createFirebaseAccount(firstName, lastName, email, password, isVet)
       .then(result => {
         if(result) this.props.change('login')();
         this.setState({ isCreatingAccount: false });
@@ -52,10 +56,14 @@ export default class Register extends Component {
 
   changeInputFocus = name => () => {
     switch (name) {
-      case 'Name':
-        this.setState({ isNameCorrect: this.name.getInputValue() === '' });
-        this.email.input.focus();
+      case 'First Name':
+        this.setState({ isNameCorrect: this.firstName.getInputValue() === '' });
+        this.lastName.input.focus();
         break;
+      case 'Last Name':
+        this.setState({ isNameCorrect: this.lastName.getInputValue() === '' });
+        this.email.input.focus();
+        break;  
       case 'Email':
         this.setState({ isEmailCorrect: this.email.getInputValue() === '' });
         this.password.input.focus();
@@ -77,12 +85,21 @@ export default class Register extends Component {
       <View style={styles.container}>
         <Text style={styles.create}>CREATE ACCOUNT</Text>
         <InputField
-          placeholder="Name"
+          placeholder="First Name"
           autoCapitalize="words"
           error={this.state.isNameCorrect}
           style={styles.input}
           focus={this.changeInputFocus}
-          ref={ref => this.name = ref}
+          ref={ref => this.firstName = ref}
+          icon={person}
+        />
+        <InputField
+          placeholder="Last Name"
+          autoCapitalize="words"
+          error={this.state.isNameCorrect}
+          style={styles.input}
+          focus={this.changeInputFocus}
+          ref={ref => this.lastName = ref}
           icon={person}
         />
         <InputField
@@ -114,7 +131,18 @@ export default class Register extends Component {
           ref={ref => this.repeat = ref}
           icon={repeat}
         />
-        <Continue isCreating={this.state.isCreatingAccount} click={this.createUserAccount}/>
+        <CheckBox
+          placeholder="Type"
+          center
+          title='I am a veterinarian'
+          checked={this.state.checked}
+          onPress={() => this.setState({checked: !this.state.checked})}
+          containerStyle={styles.check}
+          checkedColor='white'
+          uncheckedColor='white'
+          textStyle= {styles.checkText}
+        />
+        <Continue isCreating={this.state.isCreatingAccount} click={this.createUserAccount} />
         <TouchableOpacity onPress={this.props.change('login')} style={styles.touchable}>
           <Text style={styles.signIn}>{'<'} Sign In</Text>
         </TouchableOpacity>
@@ -148,9 +176,16 @@ const styles = StyleSheet.create({
   touchable: {
     alignSelf: 'flex-start',
     marginLeft: w(8),
-    marginTop: h(4),
+    marginTop: h(1),
   },
   input: {
-    marginVertical: h(2),
+    marginVertical: h(1),
+  },
+  check: {
+    marginVertical: h(1),
+    backgroundColor: 'transparent',
+  },
+  checkText: {
+    color: 'white',
   }
 });

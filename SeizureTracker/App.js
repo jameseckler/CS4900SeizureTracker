@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import firebase from 'firebase';
 import 'firebase/firestore';
 import FirebaseLogin from "./FirebaseLogin";
+import ClientHome from "./ClientScreens";
+import VetHome from "./VetScreens";
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
 export default class App extends React.Component {
@@ -18,6 +20,7 @@ export default class App extends React.Component {
       messagingSenderId: "934155972638"
     };
     firebase.initializeApp(config);
+    const fb = firebase.firestore();
   }
 
   render() {
@@ -53,30 +56,23 @@ class DashboardScreen extends Component{
 
   displayUser = () => {
   
-    var uid, email, name;
+    var uid, email;
 
     user = firebase.auth().currentUser;
 
     if (user != null) {
       email = user.email;
       uid = user.uid;
-      name = user.displayName;
     }
+
+    return <Text>{email}</Text>
 
   };
 
   render() {
-    this.displayUser();
     return(
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>Welcome, {name}!</Text>
-        
-        <Button title="Pet List"/>
-        <Button title="Vet List"/>
-        <Button title="Communications"/>
-        <Button title="About Seizures"/>
-        <Button title="Create Log"/>
-        <Button title="View Logs"/>
+        <Text>{this.displayUser()}</Text>
       </View>
     );
   }
@@ -90,8 +86,8 @@ for (let i = 0; i < highestTimeoutId; i++) {
 
 const AppSwitchNavigator = createSwitchNavigator({
   FirebaseLogin: { screen: FirebaseLogin},
-  Welcome: { screen: WelcomeScreen },
-  Dashboard: { screen: DashboardScreen }
+  ClientHome: { screen: ClientHome },
+  VetHome: { screen: VetHome }
 });
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
