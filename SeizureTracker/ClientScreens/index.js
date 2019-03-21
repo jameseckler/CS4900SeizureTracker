@@ -38,7 +38,7 @@ class DashboardScreen extends Component{
 }
 
 class PetListScreen extends Component {
-  // Pet List that routes to pet info screen
+  // Pet List (Using ScrollView) that routes to pet info screen
 
   // Add Pet Button
 }
@@ -52,13 +52,13 @@ class AddPetScreen extends Component {
 class PetInfoScreen extends Component {
   // Display pet info
 
-  // List of logs for pet
+  // List of logs for pet (ScrollView)
 }
 
 class VetListScreen extends Component {
-  // Vet List that routes to vet info
+  // Vet List (ScrollView) that routes to vet info
 
-  // Add vet button
+  <Button title="+"/>
 }
 
 class VetInfoScreen extends Component {
