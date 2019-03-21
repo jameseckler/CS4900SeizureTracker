@@ -9,9 +9,9 @@ TBA
 
 ### Prerequisites
 
-Android OS Phone or Tablet with 4.4 (KitKat) or newer
+Supported operating systems are >= Android 4.1 (API 16) and >= iOS 9.0.
 
-Network access, email registration ability
+Network access and email required
 
 ### Installing
 
@@ -25,6 +25,8 @@ Refer to test plan.pdf for final testing specifications
 
 ### Unit tests
 
+Unit tests are run using [Jest](https://jestjs.io/docs/en/tutorial-react-native). Tests are written in the `SeizureTracker\__tests__` directory and are run using the command `npm test`.
+
 ### Functional tests
 
 ### System tests
@@ -37,8 +39,9 @@ TBA
 
 ## Built With
 
-* [Android Studio 3](https://developer.android.com/studio/) - IDE
-* [Maven](https://maven.apache.org/) - Dependency Management
+* [React Native](https://facebook.github.io/react-native/) - JavaScript Framework
+* [Expo](https://expo.io/) - React Native Tool
+* [Redux](https://redux.js.org/) - State Management
 * [Firebase](https://firebase.google.com/) - Backend, database, authentication, testing, and analytics
 
 ## Contributing

@@ -7,6 +7,10 @@ import ClientHome from "./ClientScreens";
 import VetHome from "./VetScreens";
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
+import * as ClientScreens from './client_screens.js';
+import * as VetScreens from './vet_screens.js';
+import getPetList from './Functions/getpetlist.js';
+
 export default class App extends React.Component {
 
   componentWillMount() {
@@ -56,23 +60,30 @@ class DashboardScreen extends Component{
 
   displayUser = () => {
   
-    var uid, email;
+    var uid, email, name;
 
     user = firebase.auth().currentUser;
 
     if (user != null) {
       email = user.email;
       uid = user.uid;
+      name = user.displayName;
     }
-
-    return <Text>{email}</Text>
 
   };
 
   render() {
+    this.displayUser();
     return(
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>{this.displayUser()}</Text>
+        <Text>Welcome, {name}!</Text>
+        
+        <Button title="Pet List"/>
+        <Button title="Vet List"/>
+        <Button title="Communications"/>
+        <Button title="About Seizures"/>
+        <Button title="Create Log"/>
+        <Button title="View Logs"/>
       </View>
     );
   }

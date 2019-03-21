@@ -13,7 +13,7 @@ export default class GetStarted extends Component {
       >
         {this.props.isLogin
           ? <ActivityIndicator size="large" style={styles.spinner} color='white' />
-          : <Text style={styles.text}>GET STARTED</Text>}
+          : <Text style={styles.text}>LOG IN</Text>}
       </TouchableOpacity>
     );
   }
