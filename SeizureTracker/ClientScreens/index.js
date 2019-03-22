@@ -4,8 +4,9 @@ import 'firebase/firestore';
 import {createBottomTabNavigator} from 'react-navigation';
 import ClientHome from './screens/ClientHome';
 import ClientPets from './screens/ClientPets';
-import ClientSettings from './screens/ClientSettings';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Settings from './screens/ClientSettings/screens';
+
 
 export default createBottomTabNavigator({
   Home: { screen: ClientHome,
@@ -13,7 +14,7 @@ export default createBottomTabNavigator({
   navigationOptions: {
     tabBarLabel: 'Home',
     tabBarIcon: ({tintColor}) => (
-      <Icon name="ios-home" size={24} />
+      <Icon name="ios-home" color = {tintColor} size={24} />
     )
   }},
   Pets: { screen: ClientPets,
@@ -21,15 +22,15 @@ export default createBottomTabNavigator({
   navigationOptions: {
     tabBarLabel: 'Pets',
     tabBarIcon: ({tintColor}) => (
-      <Icon name="ios-albums" size={24} />
+      <Icon name="md-paw" color = {tintColor} size={24} />
     )
   }},
-  Settings: { screen: ClientSettings,
+  Settings: { screen: Settings,
   // individual tab options
   navigationOptions: {
     tabBarLabel: 'Settings',
     tabBarIcon: ({tintColor}) => (
-      <Icon name="ios-settings" size={24} />
+      <Icon name="ios-settings" color = {tintColor} size={24} />
     )
   }}
 }, {//routerconfig
@@ -40,14 +41,23 @@ export default createBottomTabNavigator({
     tabBarVisible: true
   },
   tabBarOptions:{
-    style: {
-      //backgroundColor: 'blue',
-    }
+    activeTintColor:'white',
+    //inactiveTintColor:'white',
+    activeBackgroundColor: '#101d26',
+    inactiveBackgroundColor: '#101d26',
   } 
 }
 );
 
+
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   background: {
     width: '100%',
     height: '100%',
