@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, ImageBackground, TouchableOpacity } fro
 import 'firebase/firestore';
 import firebase from "firebase";
 import Logout from './Logout';
+import { Header } from 'react-native-elements';
 
 const background = require('../../../../assets/background.png');
 
@@ -14,15 +15,11 @@ export default class Settings extends Component{
 
     logOut = () => {
 
-        console.log('entered function');
-
         firebase.auth().signOut().then(
             () => {
                 this.props.navigation.navigate('FirebaseLogin');
-                console.log('supposed to navigate');
             },
             function(error){
-                console.log("error: ", error);
             }
         )
 
@@ -31,7 +28,15 @@ export default class Settings extends Component{
     render() {
       return(
         <ImageBackground source={background} style={{width: '100%', height: '100%'}}> 
+        <Header
+          centerComponent={{ text: 'Settings', style: { color: 'white' } }}
+          containerStyle={{
+            backgroundColor: '#101d26',
+            justifyContent: 'space-around',
+          }}
+        />
         <View style={styles.container}>
+        
             <Logout isOut={this.state.isLoggingOut} click={this.logOut} />
         </View>
         </ImageBackground>
