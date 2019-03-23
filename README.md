@@ -5,13 +5,13 @@ The application will motivate owners to actively keep up with tracking their pet
 
 ## Getting Started
 
-TBA
+This application may be ran by
 
 ### Prerequisites
 
-Supported operating systems are >= Android 4.1 (API 16) and >= iOS 9.0.
-
-Network access and email required
+- iOS 9.0 and Android 4.1 (API 16) or newer. 
+- Internet connection
+- Access to email address for registration
 
 ### Installing
 
