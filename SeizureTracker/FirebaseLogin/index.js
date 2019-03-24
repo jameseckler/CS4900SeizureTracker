@@ -36,7 +36,7 @@ export default class FirebaseLogin extends Component {
       if(userData.isVet === false){
         this.props.navigation.navigate('HomeStackNavigator');
       }else{
-        this.props.navigation.navigate('VetHome');
+        this.props.navigation.navigate('VetStackNavigator');
       }
       
     })
