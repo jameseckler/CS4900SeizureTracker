@@ -6,19 +6,12 @@ import FirebaseLogin from "./FirebaseLogin";
 import ClientHome from "./ClientScreens";
 import VetHome from "./VetScreens";
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
+import config from "./config";
 
 export default class App extends React.Component {
 
   componentWillMount() {
     // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDEnzKjgzPBggXBW7sRVYUhtyH4VzgsSWU",
-      authDomain: "pet-seizure-tracker.firebaseapp.com",
-      databaseURL: "https://pet-seizure-tracker.firebaseio.com",
-      projectId: "pet-seizure-tracker",
-      storageBucket: "pet-seizure-tracker.appspot.com",
-      messagingSenderId: "934155972638"
-    };
     firebase.initializeApp(config);
     const fb = firebase.firestore();
   }
