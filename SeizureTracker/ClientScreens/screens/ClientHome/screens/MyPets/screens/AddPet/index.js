@@ -15,12 +15,13 @@ const background = require('../../../../../../../assets/background.png');
 export default class AddPet extends Component{
 
     state = {
-        sex: 'male',
+        sex: '',
         isNameCorrect: false,
         isBreedCorrect: false,
         isAgeCorrect: false,
         isWeightCorrect: false,
         isSymptomsCorrect: false,
+        isDescriptionCorrect: false,
         };
 
     constructor(props){
@@ -42,12 +43,16 @@ export default class AddPet extends Component{
             this.setState({ isAgeCorrect: this.age.getInputValue() === '' });
             this.weight.input.focus();
             break;
-            case 'Weight':
+            case 'Weight (lbs)':
             this.setState({ isWeightCorrect: this.weight.getInputValue() === ''});
             this.symptoms.input.focus();
             break;
-            case 'Symptoms':
+            case 'Seizure Symptoms':
             this.setState({ isSymptomsCorrect: this.symptoms.getInputValue() === ''});
+            this.description.input.focus();
+            break;
+            case 'Description (optional)':
+            this.setState({ isDescriptionCorrect: this.description.getInputValue() === ''});
             break;
             default:
             this.setState({ isNameCorrect: this.petName.getInputValue() === '' });
@@ -62,6 +67,10 @@ export default class AddPet extends Component{
         const weight= this.weight.getInputValue();
         const date = this.state.date;
         const symptoms = this.symptoms.getInputValue();
+        const description = this.description.getInputValue();
+
+        console.log('before addmypet: ', sex);
+        console.log('state before addmypet: ', this.state.sex);
     
         this.setState({
         isNameCorrect: petName === '',
@@ -71,7 +80,7 @@ export default class AddPet extends Component{
         isSymptomsCorrect: symptoms === '',
         }, () => {
         if(petName !== '' && breed !== '' && age !== '' && weight !== '' && symptoms !== ''  ){
-            this.addMyPet(petName, breed, sex, age, weight, date, symptoms);
+            this.addMyPet(petName, breed, sex, age, weight, date, symptoms, description);
             this.props.navigation.navigate('MyPets');
         } else {
             console.warn('Fill up all fields correctly');
@@ -79,17 +88,21 @@ export default class AddPet extends Component{
         })
     };
 
-    addMyPet = (petName, breed, sex, age, weight, date, symptoms) => {
+    addMyPet = (petName, breed, sex, age, weight, date, symptoms, description) => {
         const db = firebase.firestore();
         const curUser = firebase.auth().currentUser;
         const petRef = db.collection('users').doc(curUser.uid).collection('pets').doc(petName);
+        console.log('after addmypet: ', sex);
+        console.log('state after addmypet: ', this.state.sex);
         petRef.set({
             petName,
             breed,
+            sex,
             age,
             weight,
             date,
             symptoms,
+            description,
         });
     };
   
@@ -110,7 +123,6 @@ export default class AddPet extends Component{
                         style={styles.input}
                         error={this.state.isNameCorrect}
                         ref={ref => this.petName = ref}
-                        icon={<Icon name = 'dog'/>}
                     />
                     <InputField
                         placeholder="Breed"
@@ -119,7 +131,6 @@ export default class AddPet extends Component{
                         error={this.state.isBreedCorrect}
                         focus={this.changeInputFocus}
                         ref={ref => this.breed = ref}
-                        icon={<Icon name = 'dog'/>}
                     />
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}}>     
                         <Text style={{color:'white', fontSize: 15}}>Sex: </Text>
@@ -129,8 +140,8 @@ export default class AddPet extends Component{
                             onValueChange={(itemValue, itemIndex) => 
                                 this.setState({sex: itemValue})
                             }>
-                            <Picker.Item label="Male" value="male" />
-                            <Picker.Item label="Female" value="female" />
+                            <Picker.Item label="Male" value="male" itemIndex="0" />
+                            <Picker.Item label="Female" value="female" itemIndex="0"/>
                         </Picker>
                     </View>
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
@@ -141,7 +152,6 @@ export default class AddPet extends Component{
                             error={this.state.isAgeCorrect}
                             focus={this.changeInputFocus}
                             ref={ref => this.age = ref}
-                            icon={<Icon name = 'dog'/>}
                         />
                         <SmallInputField
                             placeholder="Weight (lbs)"
@@ -150,12 +160,11 @@ export default class AddPet extends Component{
                             error={this.state.isWeightCorrect}
                             focus={this.changeInputFocus}
                             ref={ref => this.weight = ref}
-                            icon={<Icon name = 'dog'/>}
                         />
                     </View>
                     <Text style={{marginLeft: 5, color:'white', fontSize: 15}}> Date of First Seizure: </Text>
                     <DatePicker
-                        style={{width: 200}}
+                        style={{width: 200, marginBottom: h(2)}}
                         date={this.state.date}
                         mode="date"
                         placeholder="select date"
@@ -182,12 +191,17 @@ export default class AddPet extends Component{
                         onDateChange={(date) => {this.setState({date: date})}}
                     />
                     <InputField
-                        placeholder="Symptoms"
+                        placeholder="Seizure Symptoms"
                         style={styles.input}
                         error={this.state.isSymptomsCorrect}
                         focus={this.changeInputFocus}
                         ref={ref => this.symptoms = ref}
-                        icon='md-paw'
+                    />
+                    <InputField
+                        placeholder="Description (optional)"
+                        style={styles.input}
+                        focus={this.changeInputFocus}
+                        ref={ref => this.description = ref}
                     />
                     <SubmitPet click={this.checkMyPet} />
             </View>
@@ -213,17 +227,13 @@ export default class AddPet extends Component{
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
+      marginLeft: w(0),
     },
     create: {
       color:'white',
       fontSize: totalSize(2.4),
       marginTop: h(7),
       marginBottom: h(4),
-      fontWeight: '700',
-    },
-    signIn: {
-      color:'#ffffffEE',
-      fontSize: totalSize(2),
       fontWeight: '700',
     },
     touchable: {

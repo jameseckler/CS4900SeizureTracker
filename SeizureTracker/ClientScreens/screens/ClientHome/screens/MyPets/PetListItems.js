@@ -12,7 +12,7 @@ export default class CreateLogButton extends Component {
         activeOpacity={0.5}
         onPress={this.props.click}
         style={styles.button}>
-        <Icon style={{marginLeft: w(3.5)}} name="md-paw" color = 'white' size={26} />
+        <Icon style={{marginLeft: w(3.5)}} name="md-paw" color = 'white' size={23} />
         <Text style={styles.text}>{this.props.text}</Text>
       </TouchableOpacity>
     );
@@ -26,7 +26,7 @@ CreateLogButton.propTypes = {
 
 const styles = StyleSheet.create({
   button: {
-    width: w(90),
+    width: w(80),
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'flex-start',
-    marginLeft: w(5) 
+    marginLeft: w(3) 
   },
   spinner: {
     height: h(5),

@@ -48,7 +48,9 @@ export default class MyPets extends Component{
               data = {this.state.petList}
               renderItem = {({ item, index }) => {
                 return (
-                  <PetListItems click={()=> this.props.navigation.navigate('ClientHome')} text={item.petName}/>
+                  <PetListItems click={()=> this.props.navigation.navigate('PetInfo', {
+                    petObj: item
+                  })} text={item.petName}/>
                 );
               }}
               keyExtractor={(item, index) => index.toString()}
@@ -59,7 +61,7 @@ export default class MyPets extends Component{
               color='white'
               onPress={() => this.props.navigation.navigate('AddPet')}
               size={50}
-              style={{marginTop:h(5)}}
+              style={{marginTop:h(5), alignItems: 'flex-end', justifyContent: 'flex-end'}}
               />
           </View>
 

@@ -17,6 +17,7 @@ import ViewLogs from './screens/ClientHome/screens/ViewLogs';
 import {w, h, totalSize} from "../FirebaseLogin/api/Dimensions";
 import DisplayLink from './components/DisplayLink';
 import AddPet from './screens/ClientHome/screens/MyPets/screens/AddPet';
+import PetInfo from './screens/ClientHome/screens/MyPets/screens/PetInfo';
 
 const HomeStackNavigator = createStackNavigator({
   ClientHome:{
@@ -105,6 +106,17 @@ const HomeStackNavigator = createStackNavigator({
       backgroundColor: '#101d26'
     },
     title: 'Add Pet',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  PetInfo:{
+    screen: PetInfo,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Pet Information',
     headerLayoutPreset: 'center',
     }),
   }

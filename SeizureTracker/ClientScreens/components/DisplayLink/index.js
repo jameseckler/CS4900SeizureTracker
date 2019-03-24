@@ -6,10 +6,6 @@ import {w, h, totalSize} from "../../../FirebaseLogin/api/Dimensions";
 
 export default class DisplayLink extends React.Component {
 
-  state = {
-    link: 'No Link ID'
-  };
-
   displayUser = () => {
 
     const curUser = firebase.auth().currentUser;
@@ -24,7 +20,6 @@ export default class DisplayLink extends React.Component {
           console.log('No such document!');
         }else{
            linkUID = userData.linkID;
-           this.setState({ link: linkUID });
         }
       })
       .catch(err => {
@@ -32,7 +27,7 @@ export default class DisplayLink extends React.Component {
       });
 
       
-      return <Text>{this.state.link}</Text>
+      return <Text>{linkUID}</Text>
       
   };
 
