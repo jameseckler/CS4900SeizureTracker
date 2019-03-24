@@ -11,17 +11,14 @@ export default class ViewLogsButton extends Component {
         activeOpacity={0.5}
         onPress={this.props.click}
         style={styles.button}>
-        {this.props.isButton
-        ? <ActivityIndicator size="large" style={styles.spinner} color='white' />
-        : <Text style={styles.text}>View Event Logs</Text>}
+        <Text style={styles.text}>View Event Logs</Text>
       </TouchableOpacity>
     );
   }
 }
 
 ViewLogsButton.propTypes = {
-  click: PropTypes.func.isRequired,
-  isButton: PropTypes.bool.isRequired,
+  click: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({

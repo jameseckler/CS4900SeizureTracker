@@ -11,17 +11,14 @@ export default class CreateLogButton extends Component {
         activeOpacity={0.5}
         onPress={this.props.click}
         style={styles.button}>
-        {this.props.isButton
-        ? <ActivityIndicator size="large" style={styles.spinner} color='white' />
-        : <Text style={styles.text}>Log An Event</Text>}
+        <Text style={styles.text}>Log An Event</Text>
       </TouchableOpacity>
     );
   }
 }
 
 CreateLogButton.propTypes = {
-  click: PropTypes.func.isRequired,
-  isButton: PropTypes.bool.isRequired,
+  click: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({

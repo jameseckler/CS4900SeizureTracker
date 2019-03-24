@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import 'firebase/firestore';
 import {createBottomTabNavigator} from 'react-navigation';
 import ClientPets from './screens/ClientPets';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Settings from './screens/ClientSettings/screens';
 import {createStackNavigator} from 'react-navigation';
-import AddPet from './screens/ClientHome/screens/AddPet';
+import MyPets from './screens/ClientHome/screens/MyPets';
 import MyVets from './screens/ClientHome/screens/MyVets';
 import Notifications from './screens/ClientHome/screens/Notifications';
 import Info from './screens/ClientHome/screens/Info';
@@ -14,6 +14,9 @@ import PetList from './screens/ClientPets/screens/PetList';
 import ClientHome from './screens/ClientHome/';
 import CreateLog from './screens/ClientHome/screens/CreateLog';
 import ViewLogs from './screens/ClientHome/screens/ViewLogs';
+import {w, h, totalSize} from "../FirebaseLogin/api/Dimensions";
+import DisplayLink from './components/DisplayLink';
+import AddPet from './screens/ClientHome/screens/MyPets/screens/AddPet';
 
 const HomeStackNavigator = createStackNavigator({
   ClientHome:{
@@ -24,11 +27,12 @@ const HomeStackNavigator = createStackNavigator({
         backgroundColor: '#101d26'
       },
       title: 'Home',
+      headerRight: <DisplayLink/>,
       headerLayoutPreset: 'center',
       }),
   },
-  AddPet:{
-    screen: AddPet,
+  MyPets:{
+    screen: MyPets,
     navigationOptions: () => ({
     headerTintColor: 'white',
     headerStyle: {
@@ -92,12 +96,23 @@ const HomeStackNavigator = createStackNavigator({
     title: 'Log List',
     headerLayoutPreset: 'center',
     }),
+  },
+  AddPet:{
+    screen: AddPet,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Add Pet',
+    headerLayoutPreset: 'center',
+    }),
   }
 });
 
 const PetStackNavigator = createStackNavigator({
-  PetList:{
-    screen: PetList,
+  MyPets:{
+    screen: MyPets,
     navigationOptions: () => ({
       headerTintColor: 'white',
       headerStyle: {

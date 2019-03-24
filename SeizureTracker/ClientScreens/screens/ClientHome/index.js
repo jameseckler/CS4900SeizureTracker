@@ -9,17 +9,13 @@ const background = require('../../../assets/background.png');
 
 export default class ClientHome extends Component{
   
-  state = {
-    isButton: true
-};
-
   render() {
     return(
       <ImageBackground source={background} style={{width: '100%', height: '100%'}}> 
 
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start'}}>
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('AddPet')} style={styles.leftTouchable}>
+            <TouchableOpacity onPress={()=> this.props.navigation.navigate('MyPets')} style={styles.leftTouchable}>
               <Image 
               source = {require('../../../assets/petsButton.png')}
               style={styles.imageStyle}
@@ -47,10 +43,10 @@ export default class ClientHome extends Component{
             </TouchableOpacity>
           </View>
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <CreateLogButton isOut={this.state.isButton} click={()=> this.props.navigation.navigate('CreateLog') } />
+            <CreateLogButton click={()=> this.props.navigation.navigate('CreateLog') } />
           </View>
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <ViewLogsButton isOut={this.state.isButton} click={()=> this.props.navigation.navigate('ViewLogs') } />
+            <ViewLogsButton click={()=> this.props.navigation.navigate('ViewLogs') } />
           </View>
         </View>
 
