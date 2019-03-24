@@ -25,7 +25,7 @@ export default class AddPet extends Component{
 
     constructor(props){
         super(props)
-        this.state = {date:"2019-03-25"}
+        this.state = {date:new Date()}
         }
 
     changeInputFocus = name => () => {
