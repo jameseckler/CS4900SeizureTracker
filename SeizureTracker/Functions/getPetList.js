@@ -3,26 +3,24 @@ import { FlatList } from "react-native";
 import { List, ListItem } from "react-native-elements";
 import * as firebase from "firebase";
 
-function getPetList (ownerID) {
+export default function getPetList (ownerID) {
 
     
     var fb = firebase.firestore();
 
-    var pets;
-    var i = 0;
+    var pets = [];
     for (id in ownerID) {
         var users = fb.collection('users').where('userID', "==", id).get();
 
         for (user in users) {
-            var j = 0;
-            while (j < user.pets.length) {
-                pets[i] = {
+            userPets = user.pets;
+
+            for (pet in userPets) {
+                pets.push({
                     firstName: user.firstName,
                     lastName: user.lastName,
-                    petName: user.pets[j].doc                    
-                };
-                i++;
-                j++;
+                    petName: pet.name
+                });
             }
         }
     }
@@ -33,9 +31,9 @@ function getPetList (ownerID) {
                 data= { pets }
                 renderItem = {({ pet }) => (
                     <ListItem
-                        title = { user.petName }
-                        subtitle = {`${user.firstName} ${user.lastName}`}
-                        keyExtractor = { user }
+                        title = { pet.petName }
+                        subtitle = {`${pet.firstName} ${pet.lastName}`}
+                        keyExtractor = { pet.firstName }
                     />
                 )}
             />
@@ -43,5 +41,3 @@ function getPetList (ownerID) {
     );
 
 }
-
-export default getPetList;
