@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import 'firebase/firestore';
 import firebase from "firebase";
 import Logout from './Logout';
@@ -10,19 +10,34 @@ const background = require('../../../../assets/background.png');
 
 export default class Settings extends Component{
 
-    state = {
-        isLoggingOut: true
-    };
+  constructor(props) {
+    super(props);
+    const curUser = firebase.auth().currentUser;
+    this.ref = firebase.firestore().collection('users').doc(curUser.uid);
+    this.state = ({
+      userName: `${curUser.firstName} ${curUser.lastName}`,
+      isLoggingOut: true
+    })
+  }
 
     logOut = () => {
 
-        firebase.auth().signOut().then(
+      Alert.alert(
+        'Logging Out',
+        'Proceed?',
+        [
+          {text: 'No'},
+          {text: 'Yes', onPress: () => {firebase.auth().signOut().then(
             () => {
                 this.props.navigation.navigate('FirebaseLogin');
             },
             function(error){
             }
-        )
+        )}}
+        ]
+      );
+
+        
 
     };
   
@@ -37,7 +52,7 @@ export default class Settings extends Component{
           }}
         />
         <View style={styles.container}>
-        
+
             <Logout isOut={this.state.isLoggingOut} click={this.logOut} />
         </View>
         </ImageBackground>
