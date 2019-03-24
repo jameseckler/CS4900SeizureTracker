@@ -7,8 +7,13 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Settings from './screens/ClientSettings/screens';
 import {createStackNavigator} from 'react-navigation';
 import AddPet from './screens/ClientHome/screens/AddPet';
+import MyVets from './screens/ClientHome/screens/MyVets';
+import Notifications from './screens/ClientHome/screens/Notifications';
+import Info from './screens/ClientHome/screens/Info';
 import PetList from './screens/ClientPets/screens/PetList';
 import ClientHome from './screens/ClientHome/';
+import CreateLog from './screens/ClientHome/screens/CreateLog';
+import ViewLogs from './screens/ClientHome/screens/ViewLogs';
 
 const HomeStackNavigator = createStackNavigator({
   ClientHome:{
@@ -22,14 +27,69 @@ const HomeStackNavigator = createStackNavigator({
       headerLayoutPreset: 'center',
       }),
   },
-  AddVet:{
+  AddPet:{
     screen: AddPet,
     navigationOptions: () => ({
     headerTintColor: 'white',
     headerStyle: {
       backgroundColor: '#101d26'
     },
-    title: 'Add Pet',
+    title: 'My Pets',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  MyVets:{
+    screen: MyVets,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'My Vets',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  Notifications:{
+    screen: Notifications,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Notifications',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  Info:{
+    screen: Info,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Epilepsy Information',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  CreateLog:{
+    screen: CreateLog,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Log An Event ',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  ViewLogs:{
+    screen: ViewLogs,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Log List',
     headerLayoutPreset: 'center',
     }),
   }
