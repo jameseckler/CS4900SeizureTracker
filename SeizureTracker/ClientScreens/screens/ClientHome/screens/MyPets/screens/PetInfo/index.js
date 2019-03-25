@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import 'firebase/firestore';
 import {w, h, totalSize} from "../../../../../../../FirebaseLogin/api/Dimensions";
 import CreateLogButton from '../../../../CreateLogButton';
@@ -27,10 +27,7 @@ export default class PetInfo extends Component{
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <View style={[styles.viewStyle, shadowStyle]}>
                 <View style={{ flex: 1, alignItems: 'flex-start', flexDirection: 'column', justifyContent: 'flex-start', marginTop: h(2)}}>
-                    <Image 
-                        source={{uri: placehold}}
-                        style= {{width:100, height:100}}
-                    />
+
                 </View>
                 <View style={{ flex: 1, alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-end', marginTop: h(2)}}>
                     <CreateLogButton click={()=> this.props.navigation.navigate('CreateLog') } />
