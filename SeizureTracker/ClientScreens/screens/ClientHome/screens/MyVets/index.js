@@ -56,14 +56,6 @@ export default class MyVets extends Component{
             />
           </View>
 
-          <Icon
-            name = 'add-circle-outline'
-            color = 'white'
-            onPress = {() => this.props.navigation.navigate('AddVet')}
-            size={50}
-            style={{marginTop:h(5)}}
-          />
-
         </ImageBackground>
       );
     }
