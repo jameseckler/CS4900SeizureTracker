@@ -9,7 +9,6 @@ import MyPets from './screens/VetHome/screens/MyPets';
 import MyClients from './screens/VetHome/screens/MyClients';
 import Notifications from './screens/VetHome/screens/Notifications';
 import Info from './screens/VetHome/screens/Info';
-import PetList from './screens/ClientPets/screens/PetList';
 import VetHome from './screens/VetHome/';
 import CreateLog from './screens/VetHome/screens/CreateLog';
 import ViewLogs from './screens/VetHome/screens/ViewLogs';

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, ImageBackground, TouchableOpacity, Image } from 'react-native';
 import 'firebase/firestore';
 import {w, h, totalSize} from "../../../FirebaseLogin/api/Dimensions";
-import CreateLogButton from './CreateLogButton';
-import ViewLogsButton from './ViewLogsButton';
+import InputField from '../../../FirebaseLogin/components/InputField';
 
 const background = require('../../../assets/background.png');
 
