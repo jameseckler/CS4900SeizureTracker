@@ -5,35 +5,40 @@ import * as firebase from "firebase";
 
 export default function getPetList (ownerID) {
 
-    
     var fb = firebase.firestore();
 
-    var pets = [];
+    this.state = ({
+        pets: []
+    });
+
     for (id in ownerID) {
-        var users = fb.collection('users').where('userID', "==", id).get();
+        var user = fb.collection('users').doc(id);
 
-        for (user in users) {
-            userPets = user.pets;
+        userPets = user.collection('pets');
 
-            for (pet in userPets) {
+        user = user.get();            
+
+        userPets.onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
                 pets.push({
                     firstName: user.firstName,
                     lastName: user.lastName,
-                    petName: pet.name
-                });
-            }
-        }
-    }
+                    petName: pet.get().name
+                })
+            })
+        })
+        
+    };
 
     return (
         <List>
             <FlatList
-                data= { pets }
-                renderItem = {({ pet }) => (
+                data= { this.state.pets }
+                renderItem = {({ pet, index }) => (
                     <ListItem
                         title = { pet.petName }
                         subtitle = {`${pet.firstName} ${pet.lastName}`}
-                        keyExtractor = { pet.firstName }
+                        keyExtractor = {(item, index) => index.toString()}
                     />
                 )}
             />

@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Pet List Items against snapshot 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "alignSelf": "center",
+      "backgroundColor": "#101d26",
+      "borderColor": "#E0E0E0",
+      "borderRadius": 0,
+      "borderWidth": 1,
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "flex-start",
+      "marginLeft": 37.5,
+      "marginVertical": 13.34,
+      "opacity": 1,
+      "paddingVertical": 15,
+      "width": 675,
+    }
+  }
+>
+  <Text />
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "flex": 1,
+        "flexDirection": "row",
+        "fontSize": 53.56322059025204,
+        "fontWeight": "500",
+        "justifyContent": "flex-start",
+        "marginLeft": 37.5,
+        "paddingVertical": 13.34,
+      }
+    }
+  >
+    Test pet
+  </Text>
+</View>
+`;
