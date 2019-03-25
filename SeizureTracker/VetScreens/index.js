@@ -133,9 +133,9 @@ export default createBottomTabNavigator({
   PetStackNavigator: { screen: PetStackNavigator,
     // individual tab options
     navigationOptions: {
-      tabBarLabel: 'Pets',
+      tabBarLabel: 'Clients',
       tabBarIcon: ({tintColor}) => (
-        <Icon name="md-paw" color = {tintColor} size={24} />
+        <Icon name="ios-people" color = {tintColor} size={24} />
       )
   }},
   Settings: { screen: Settings,

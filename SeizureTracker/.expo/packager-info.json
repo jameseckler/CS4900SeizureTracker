@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 13816,
+  "packagerPort": null,
+  "packagerPid": null,
   "expoServerNgrokUrl": "https://5f-tax.anonymous.seizuretracker.exp.direct",
   "packagerNgrokUrl": "https://packager.5f-tax.anonymous.seizuretracker.exp.direct",
-  "ngrokPid": 15780
+  "ngrokPid": 15988
 }

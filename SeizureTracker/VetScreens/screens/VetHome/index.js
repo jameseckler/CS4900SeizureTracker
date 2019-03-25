@@ -43,10 +43,18 @@ export default class VetHome extends Component{
             </TouchableOpacity>
           </View>
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <CreateLogButton click={()=> this.props.navigation.navigate('CreateLog') } />
+            <InputField
+                      placeholder="Search for pets..."
+                      autoCapitalize="words"
+                      style={styles.input}
+            />
           </View>
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <ViewLogsButton click={()=> this.props.navigation.navigate('ViewLogs') } />
+            <InputField
+                      placeholder="Search for clients..."
+                      autoCapitalize="words"
+                      style={styles.input}
+            />
           </View>
         </View>
 

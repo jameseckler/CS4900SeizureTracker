@@ -26,9 +26,6 @@ export default class PetInfo extends Component{
 
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <View style={[styles.viewStyle, shadowStyle]}>
-                <View style={{ flex: 1, alignItems: 'flex-start', flexDirection: 'column', justifyContent: 'flex-start', marginTop: h(2)}}>
-
-                </View>
                 <View style={{ flex: 1, alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-end', marginTop: h(2)}}>
                     <CreateLogButton click={()=> this.props.navigation.navigate('CreateLog') } />
                     <ViewLogsButton click={()=> this.props.navigation.navigate('ViewLogs') } />
