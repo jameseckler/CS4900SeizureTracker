@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "expo": "^32.0.0",
+    "expokit": "^32.0.7",
     "firebase": "^5.8.4",
     "jest": "^24.5.0",
     "jest-expo": "^32.0.0",
