@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text, Image} from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, Image, Alert } from 'react-native';
 import InputField from "../../components/InputField";
 import {w, h, totalSize} from '../../api/Dimensions';
 import GetStarted from './GetStarted';
@@ -28,7 +28,7 @@ export default class Login extends Component {
       if(email !== '' && password !== ''){
         this.loginToFireBase(email, password);
       } else {
-        console.warn('Fill up all fields')
+        Alert.alert('Missing email/password', 'Fill in all fields')
       }
     });
   };

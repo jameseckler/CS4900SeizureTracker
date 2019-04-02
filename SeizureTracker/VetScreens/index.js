@@ -3,7 +3,7 @@ import { StyleSheet, Text } from 'react-native';
 import 'firebase/firestore';
 import {createBottomTabNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Settings from './screens/ClientSettings/screens';
+import Settings from './screens/VetSettings/screens';
 import {createStackNavigator} from 'react-navigation';
 import MyPets from './screens/VetHome/screens/MyPets';
 import MyClients from './screens/VetHome/screens/MyClients';

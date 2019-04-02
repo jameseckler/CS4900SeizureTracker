@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {w, h, totalSize} from "../../../../../FirebaseLogin/api/Dimensions";
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default class CreateLogButton extends Component {
+export default class VetListItems extends Component {
 
   render() {
     return (
@@ -18,11 +18,6 @@ export default class CreateLogButton extends Component {
     );
   }
 }
-
-CreateLogButton.propTypes = {
-  click: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired
-};
 
 const styles = StyleSheet.create({
   button: {

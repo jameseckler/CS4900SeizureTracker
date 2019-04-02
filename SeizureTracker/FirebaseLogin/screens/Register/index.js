@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {w, h, totalSize} from '../../api/Dimensions';
 import InputField from '../../components/InputField';
 import Continue from './Continue';
@@ -40,7 +40,7 @@ export default class Register extends Component {
       if(firstName !== '' && lastName !== '' && email !== '' && password !== '' && (repeat !== '' && repeat === password)){
         this.createFireBaseAccount(firstName, lastName, email, password, isVet);
       } else {
-        console.warn('Fill up all fields correctly');
+        Alert.alert('All fields must be completed');
       }
     })
   };

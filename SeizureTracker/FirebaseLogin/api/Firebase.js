@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import { Alert } from "react-native";
 
 class Firebase {
 
@@ -8,14 +9,14 @@ class Firebase {
         .catch(error => {
           switch (error.code) {
             case 'auth/invalid-email':
-              console.warn('Invalid email address format.');
+              Alert.alert('Invalid Email', 'Invalid email address format.');
               break;
             case 'auth/user-not-found':
             case 'auth/wrong-password':
-              console.warn('Invalid email address or password');
+              Alert.alert('Invalid Credentials', 'Invalid email address or password');
               break;
             default:
-              console.warn('Check your internet connection');
+              Alert.alert('Error', 'Check your internet connection');
           }
           resolve(null);
         }).then(user => {
@@ -31,16 +32,16 @@ class Firebase {
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(error => {
         switch (error.code) {
           case 'auth/email-already-in-use':
-            console.warn('This email address is already taken');
+            Alert.alert('Invalid Email', 'This email address is already taken');
             break;
           case 'auth/invalid-email':
-            console.warn('Invalid e-mail address format');
+            Alert.alert('Invalid Email', 'Invalid e-mail address format');
             break;
           case 'auth/weak-password':
-            console.warn('Password is too weak');
+            Alert.alert('Invalid password', 'Password is too weak');
             break;
           default:
-            console.warn('Check your internet connection');
+            Alert.alert('Error', 'Check your internet connection');
         }
         resolve(false);
       }).then(info => {
@@ -69,18 +70,18 @@ class Firebase {
     return new Promise(resolve => {
       firebase.auth().sendPasswordResetEmail(email)
         .then(() => {
-          console.warn('Email with new password has been sent');
+          Alert.alert('Recovery Email Sent', 'Email with new password has been sent');
           resolve(true);
         }).catch(error => {
           switch (error.code) {
             case 'auth/invalid-email':
-              console.warn('Invalid email address format');
+              Alert.alert('Invalid email address format');
               break;
             case 'auth/user-not-found':
-              console.warn('User with this email does not exist');
+              Alert.alert('User with this email does not exist');
               break;
             default:
-              console.warn('Check your internet connection');
+              Alert.alert('Check your internet connection');
           }
           resolve(false);
         });
