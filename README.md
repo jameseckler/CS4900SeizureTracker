@@ -19,9 +19,7 @@ TBA
 
 ## Running the tests
 
-TBA
-
-Refer to test plan.pdf for final testing specifications
+Refer to "docs/test plan.pdf" for final testing specifications
 
 ### Unit tests
 
@@ -39,7 +37,7 @@ TBA
 
 * [React Native](https://facebook.github.io/react-native/) - JavaScript Framework
 * [Expo](https://expo.io/) - React Native Tool
-* [Redux](https://redux.js.org/) - State Management
+* [Jest](https://jestjs.io/en/) - Unit Testing
 * [Firebase](https://firebase.google.com/) - Backend, database, authentication, testing, and analytics
 
 ## Contributing
