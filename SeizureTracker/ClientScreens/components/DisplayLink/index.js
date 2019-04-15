@@ -25,8 +25,6 @@ export default class DisplayLink extends React.Component {
         console.log('Error getting link ID', err);
       });
 
-      linkUID = userData.linkID;
-
       return <Text>{linkUID}</Text>
       
   };
