@@ -11,39 +11,24 @@ export default class DisplayLink extends React.Component {
     const curUser = firebase.auth().currentUser;
     const fb = firebase.firestore();
     const userID = curUser.uid;
-    var linkUID, linkString;
+    var linkUID;
+    var userData;
   
     fb.collection('users').doc(userID).get()
       .then(doc => {
-        var userData = doc.data();
+        userData = doc.data();
         if (!doc.exists) {
           console.log('No such document!');
-        }else{
-           linkUID = userData.linkID;
         }
       })
       .catch(err => {
         console.log('Error getting link ID', err);
       });
 
-      
+      linkUID = userData.linkID;
+
       return <Text>{linkUID}</Text>
       
-  };
-
-  displayUsers = () => {
-  
-    var uid, email;
-
-    user = firebase.auth().currentUser;
-
-    if (user != null) {
-      email = user.email;
-      uid = user.uid;
-    }
-
-    return <Text>{email}</Text>
-
   };
 
     render() {
