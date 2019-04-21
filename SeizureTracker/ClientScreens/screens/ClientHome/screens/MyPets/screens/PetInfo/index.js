@@ -26,10 +26,15 @@ export default class PetInfo extends Component{
 
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <View style={[styles.viewStyle, shadowStyle]}>
+              <View style={{ flex: 1, alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-end', marginTop: h(2)}}>
                 <View style={{ flex: 1, alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-end', marginTop: h(2)}}>
-                    <CreateLogButton click={()=> this.props.navigation.navigate('CreateLog') } />
-                    <ViewLogsButton click={()=> this.props.navigation.navigate('ViewLogs') } />
+                      <Text>hey</Text>
                 </View>
+              </View>
+              <View style={{ flex: 1, alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-end', marginTop: h(2)}}>
+                  <CreateLogButton click={()=> this.props.navigation.navigate('CreateLog') } />
+                  <ViewLogsButton click={()=> this.props.navigation.navigate('ViewLogs') } />
+              </View>
             </View>
           </View>
 
@@ -41,7 +46,7 @@ export default class PetInfo extends Component{
   const styles = StyleSheet.create({
     viewStyle: {
         backgroundColor: '#101d26',
-        flexDirection: 'row',
+        flexDirection: 'column',
         paddingVertical: w(3.4),
         borderRadius: w(6),
         borderColor: 'white',

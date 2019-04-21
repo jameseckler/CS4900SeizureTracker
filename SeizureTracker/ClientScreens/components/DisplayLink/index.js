@@ -13,6 +13,11 @@ export default class DisplayLink extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    this.displayUser();
+  };
+  
+
   displayUser = () => {
 
     const curUser = firebase.auth().currentUser;
@@ -34,13 +39,15 @@ export default class DisplayLink extends React.Component {
         console.log('Error getting link ID', err);
       });
 
-      return this.state.linkUID;
+    console.log('read');
+
+    return this.state.linkUID;
       
   };
 
     render() {
         return (
-            <Text style={{ color: 'white', marginRight: w(2), }}>Unique Link ID: {this.displayUser()}</Text>
+            <Text style={{ color: 'white', marginRight: w(2), }}>Unique Link ID: {this.state.linkUID}</Text>
         );
     }
 
