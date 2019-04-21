@@ -16,7 +16,7 @@ export default class VetHome extends Component{
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
             <TouchableOpacity onPress={()=> this.props.navigation.navigate('MyPets')} style={styles.leftTouchable}>
               <Image 
-              source = {require('../../../assets/petsButton.png')}
+              source = {require('../../../assets/logVetButton.png')}
               style={styles.imageStyle}
               />
             </TouchableOpacity>

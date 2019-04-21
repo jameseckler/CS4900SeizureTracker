@@ -56,7 +56,7 @@ const VetStackNavigator = createStackNavigator({
     headerStyle: {
       backgroundColor: '#101d26'
     },
-    title: 'Notifications',
+    title: 'Client Calendar',
     headerLayoutPreset: 'center',
     }),
   },
