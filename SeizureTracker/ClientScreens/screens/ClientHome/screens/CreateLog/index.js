@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Picker, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Picker, KeyboardAvoidingView, Alert } from 'react-native';
+import * as firebase from 'firebase';
 import 'firebase/firestore';
 import {w, h, totalSize} from "../../../../../FirebaseLogin/api/Dimensions";
 import InputField from '../../../../../FirebaseLogin/components/InputField';
-import SmallInputField from '../../../../../FirebaseLogin/components/SmallInputField';
-import SubmitPet from './SubmitLog';
 import DatePicker from 'react-native-datepicker'
 import { Header } from 'react-navigation';
 import SubmitLog from './SubmitLog';
@@ -24,14 +23,42 @@ export default class CreateLog extends Component{
     var d = new Date();
 
     this.state = {
+      petList: [],
       date: d,
       time: d.getTime()
     };
+    
+    const curUser = firebase.auth().currentUser;
+    this.ref = firebase.firestore().collection('users').doc(curUser.uid).collection('pets');
 
+    
+
+  }
+
+  componentDidMount() {
+    this.unsubscribe = this.ref.onSnapshot((querySnapshot) => {
+      const pets = [];
+      querySnapshot.forEach((doc) => {
+        pets.push({
+          petName: doc.data().petName
+        });
+      });
+      this.setState({
+        petList: pets,
+        loading: false,
+      })
+    })
   }
   
     render() {
+      if (this.state.petName == null) {
+        Alert.alert("WARNING: No Pets Found", "Please go to My Pets and add a pet to your account before creating a log",
+        [
+          {text: "OK", onPress: () => {this.props.navigation.goBack()}}
+        ]);
+      }
       return(
+        
         <ImageBackground source={background} style={{width: '100%', height: '100%'}}>
 
           <KeyboardAvoidingView 
@@ -51,7 +78,9 @@ export default class CreateLog extends Component{
                       onValueChange={(itemValue, itemIndex) => 
                           this.setState({pet: itemValue})
                       }>
-                      <Picker.Item label="Placeholder" value="placeholder" itemIndex="0" />
+                      {this.state.petList.map(element =>
+                        <Picker.Item label={element.petName} value={element.petName} itemIndex="0" />
+                      )}
                   </Picker>
                 </View>
 
