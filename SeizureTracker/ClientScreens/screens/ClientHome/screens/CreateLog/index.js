@@ -51,12 +51,12 @@ export default class CreateLog extends Component{
   }
   
     render() {
-      if (this.state.petName == null) {
+      /*if (this.state.petName == null) {
         Alert.alert("WARNING: No Pets Found", "Please go to My Pets and add a pet to your account before creating a log",
         [
           {text: "OK", onPress: () => {this.props.navigation.goBack()}}
         ]);
-      }
+      }*/
       return(
         
         <ImageBackground source={background} style={{width: '100%', height: '100%'}}>

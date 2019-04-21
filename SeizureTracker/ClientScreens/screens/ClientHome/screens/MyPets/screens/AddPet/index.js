@@ -15,7 +15,6 @@ const background = require('../../../../../../../assets/background.png');
 export default class AddPet extends Component{
 
     state = {
-        sex: '',
         isNameCorrect: false,
         isBreedCorrect: false,
         isAgeCorrect: false,
@@ -26,7 +25,10 @@ export default class AddPet extends Component{
 
     constructor(props){
         super(props)
-        this.state = {date:new Date()}
+        this.state = {
+            date:new Date(),
+            sex: 'male'
+        }
         }
 
     changeInputFocus = name => () => {
@@ -140,8 +142,8 @@ export default class AddPet extends Component{
                             onValueChange={(itemValue, itemIndex) => 
                                 this.setState({sex: itemValue})
                             }>
-                            <Picker.Item label="Male" value="male" itemIndex="0" />
-                            <Picker.Item label="Female" value="female" itemIndex="0"/>
+                            <Picker.Item label="Male" value="male" />
+                            <Picker.Item label="Female" value="female"/>
                         </Picker>
                     </View>
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>

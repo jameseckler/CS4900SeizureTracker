@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import firebase from "firebase";
 import Logout from './Logout';
 import { Header } from 'react-native-elements';
+import DisplayLink from '../../../components/DisplayLink/';
 import MyPets from '../../ClientSettings/screens/';
 
 const background = require('../../../../assets/background.png');
@@ -52,8 +53,8 @@ export default class Settings extends Component{
           }}
         />
         <View style={styles.container}>
-
-            <Logout isOut={this.state.isLoggingOut} click={this.logOut} />
+          <DisplayLink/>
+          <Logout isOut={this.state.isLoggingOut} click={this.logOut} />
         </View>
         </ImageBackground>
       );
