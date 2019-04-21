@@ -13,7 +13,7 @@ export default class CreateLogButton extends Component {
         onPress={this.props.click}
         style={styles.button}>
         <Icon style={{marginLeft: w(3.5)}} name="md-paw" color = 'white' size={23} />
-        <Text style={styles.text}>{this.props.text}</Text>
+        <Text style={styles.text}>{this.props.name}</Text>
       </TouchableOpacity>
     );
   }
@@ -21,7 +21,14 @@ export default class CreateLogButton extends Component {
 
 CreateLogButton.propTypes = {
   click: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired
+  age: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  dateString: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  sex: PropTypes.string.isRequired,
+  symptoms: PropTypes.string.isRequired,
+  weight: PropTypes.string.isRequired
 };
 
 const styles = StyleSheet.create({

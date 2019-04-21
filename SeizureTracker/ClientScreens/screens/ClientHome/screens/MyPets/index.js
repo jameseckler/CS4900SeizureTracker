@@ -25,7 +25,14 @@ export default class MyPets extends Component{
       const pets = [];
       querySnapshot.forEach((doc) => {
         pets.push({
-          petName: doc.data().petName
+          age: doc.data().age,
+          breed: doc.data().breed,
+          date: doc.data().date,
+          description: doc.data().description,
+          name: doc.data().petName,
+          sex: doc.data().sex,
+          symptoms: doc.data().symptoms,
+          weight: doc.data().weight,
         });
       });
       this.setState({
@@ -50,7 +57,16 @@ export default class MyPets extends Component{
                 return (
                   <PetListItems click={()=> this.props.navigation.navigate('PetInfo', {
                     petObj: item
-                  })} text={item.petName}/>
+                  })} 
+                  age= {item.age}
+                  breed= {item.breed}
+                  dateString= {item.date}
+                  description= {item.description}
+                  name= {item.name}
+                  sex= {item.sex}
+                  symptoms= {item.symptoms}
+                  weight= {item.weight}
+                  />
                 );
               }}
               keyExtractor={(item, index) => index.toString()}
