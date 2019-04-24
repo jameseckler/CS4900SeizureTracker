@@ -5,7 +5,7 @@ import {w, h, totalSize} from '../../api/Dimensions';
 import GetStarted from './GetStarted';
 import Firebase from '../../api/Firebase';
 
-const companyLogo = require('../../assets/companylogo.png');
+const logo = require('../../assets/logo1.png');
 const email = require('../../assets/email.png');
 const password = require('../../assets/password.png');
 
@@ -54,7 +54,7 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image style={styles.icon} resizeMode="contain" source={companyLogo}/>
+        <Image style={styles.icon2} resizeMode="contain" source={logo}/>
         <InputField
           placeholder="Email"
           keyboardType="email-address"
@@ -97,10 +97,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    width: w(70),
-    height: h(30),
-    marginTop: h(10),
-    marginBottom: h(7),
+    width: w(35),
+    height: h(15),
+  },
+  icon2: {
+    width: w(95),
+    height: h(40),
+    marginTop: h(5),
   },
   textContainer: {
     width: w(100),

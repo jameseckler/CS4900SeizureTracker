@@ -43,7 +43,7 @@ export default class ClientHome extends Component{
             </TouchableOpacity>
           </View>
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <CreateLogButton click={()=> this.props.navigation.navigate('CreateLog') } />
+            <CreateLogButton click={()=> this.props.navigation.navigate('LogType') } />
           </View>
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
             <ViewLogsButton click={()=> this.props.navigation.navigate('ViewLogs') } />

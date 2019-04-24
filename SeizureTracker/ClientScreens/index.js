@@ -18,6 +18,10 @@ import {w, h, totalSize} from "../FirebaseLogin/api/Dimensions";
 import DisplayLink from './components/DisplayLink';
 import AddPet from './screens/ClientHome/screens/MyPets/screens/AddPet';
 import PetInfo from './screens/ClientHome/screens/MyPets/screens/PetInfo';
+import LogType from './screens/ClientHome/screens/CreateLog/screens/LogType/';
+import CreateMedLog from './screens/ClientHome/screens/CreateLog/screens/LogType/screens/CreateMedLog/';
+import CreateSeizureLog from './screens/ClientHome/screens/CreateLog/screens/LogType/screens/CreateSeizureLog/';
+import CreateOtherLog from './screens/ClientHome/screens/CreateLog/screens/LogType/screens/CreateOtherLog/';
 
 const HomeStackNavigator = createStackNavigator({
   ClientHome:{
@@ -117,6 +121,50 @@ const HomeStackNavigator = createStackNavigator({
       backgroundColor: '#101d26'
     },
     title: 'Pet Information',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  CreateMedLog:{
+    screen: CreateMedLog,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Create Medication Log',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  CreateSeizureLog:{
+    screen: CreateSeizureLog,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Create Medication Log',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  CreateOtherLog:{
+    screen: CreateOtherLog,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Create Medication Log',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  LogType:{
+    screen: LogType,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Create Medication Log',
     headerLayoutPreset: 'center',
     }),
   }

@@ -48,7 +48,7 @@ export default class PetInfo extends Component{
                   </View>
               </View>
               <View style={{ flex: 1, alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-end', marginTop: h(2)}}>
-                  <CreateLogButton click={()=> this.props.navigation.navigate('CreateLog') } />
+                  <CreateLogButton click={()=> this.props.navigation.navigate('LogType') } />
                   <ViewLogsButton click={()=> this.props.navigation.navigate('ViewLogs') } />
               </View>
             </View>
