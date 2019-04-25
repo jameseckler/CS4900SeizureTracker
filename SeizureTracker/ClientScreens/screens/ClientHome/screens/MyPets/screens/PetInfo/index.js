@@ -34,7 +34,7 @@ export default class PetInfo extends Component{
                     <View style={styles.row1}>
                       <Text style={styles.textField}>Name: <Text style={styles.textCus}>{petObj.name}</Text> </Text>
                       <Text style={styles.textField}>Breed: <Text style={styles.textCus}>{petObj.breed}</Text> </Text>
-                      <Text style={styles.textField}>1st Seizure: <Text style={styles.textCus}>{petObj.date}</Text> </Text>
+                      <Text style={styles.textField}>1st Seizure: <Text style={styles.textCus}>{petObj.date.toString()}</Text> </Text>
                     </View>
                     <View style={styles.row2}>
                       <Text style={styles.textField}>Sex: <Text style={styles.textCus}>{petObj.sex}</Text> </Text>

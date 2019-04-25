@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import InputField from '../../../../../../../FirebaseLogin/components/InputField';
 import SmallInputField from '../../../../../../../FirebaseLogin/components/SmallInputField';
 import SubmitPet from './SubmitPet';
-import DatePicker from 'react-native-datepicker'
+import DatePicker from 'react-native-datepicker';
 import { Header } from 'react-navigation';
 
 const background = require('../../../../../../../assets/background.png');
@@ -24,11 +24,13 @@ export default class AddPet extends Component{
         };
 
     constructor(props){
+        d = new Date()
         super(props)
         this.state = {
-            date:new Date(),
+            date:d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate(),
             sex: 'male'
         }
+        console.log(this.state.date);
         }
 
     changeInputFocus = name => () => {
