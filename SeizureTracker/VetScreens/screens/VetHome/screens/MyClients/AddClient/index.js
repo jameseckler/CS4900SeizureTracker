@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Picker, KeyboardAvoidingView, Alert } from 'react-native';
 import 'firebase/firestore';
 import * as firebase from 'firebase';
-import {w, h, totalSize} from "../../../../../../../FirebaseLogin/api/Dimensions";
+import {w, h, totalSize} from "../../../../../../FirebaseLogin/api/Dimensions";
 import Icon from 'react-native-vector-icons/Ionicons';
-import InputField from '../../../../../../../FirebaseLogin/components/InputField';
-import SmallInputField from '../../../../../../../FirebaseLogin/components/SmallInputField';
+import InputField from '../../../../../../FirebaseLogin/components/InputField';
+import SmallInputField from '../../../../../../FirebaseLogin/components/SmallInputField';
 import SubmitClient from './SubmitClient';
 
-const background = require('../../../../../../../assets/background.png');
+const background = require('../../../../../../assets/background.png');
 
 export default class AddClient extends Component{
 
@@ -31,8 +31,8 @@ export default class AddClient extends Component{
         isIdCorrect: id === ''
         }, () => {
         if(id !== ''){
-            var client = this.addMyClient(fullId);
-            if(client == null) {
+            var client = this.addClient(id);
+            if(client == undefined) {
                 Alert.alert('Client ID ' + id + ' does not exist');
             }
             else {
@@ -48,10 +48,11 @@ export default class AddClient extends Component{
         const db = firebase.firestore();
         const curUser = firebase.auth().currentUser;
 
-        const client = db.collection('users').where('linkID', '==', id);
+        const client = db.collection('users').where('linkID', '==', id).get();
+        console.log(client);
 
         {/* Link ID exists */}
-        if (client) {
+        if (client != undefined) {
 
           {/* Add client details to vet account */}
             const clientRef = db.collection('users').doc(curUser.uid).collection('clients').doc(client.uid);
@@ -82,12 +83,11 @@ export default class AddClient extends Component{
       return(
         <ImageBackground source={background} style={{width: '100%', height: '100%'}}> 
         <KeyboardAvoidingView 
-        keyboardVerticalOffset = {Header.HEIGHT + 20} 
         style={{flex: 1}}
         behavior="padding">
         <ScrollView>
             <View style={styles.container}>
-                <Text style={styles.create}>Input your client's Unique Link ID (Located at the top right of their home screen): </Text>
+                <Text style={styles.create}>Input your client's Unique Link ID{"\n"}(Located at the top right of their home screen): </Text>
                     <InputField
                         placeholder="Unique Link ID"
                         autoCapitalize="words"

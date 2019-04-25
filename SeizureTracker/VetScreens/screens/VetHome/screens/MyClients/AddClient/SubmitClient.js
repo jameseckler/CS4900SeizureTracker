@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Dimensions, StyleSheet, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
-import {w, h, totalSize} from "../../../../../../../FirebaseLogin/api/Dimensions";
+import {w, h, totalSize} from "../../../../../../FirebaseLogin/api/Dimensions";
 
 export default class SubmitClient extends Component {
 
@@ -17,7 +17,7 @@ export default class SubmitClient extends Component {
   }
 }
 
-SubmitPet.propTypes = {
+SubmitClient.propTypes = {
   click: PropTypes.func.isRequired
 };
 
