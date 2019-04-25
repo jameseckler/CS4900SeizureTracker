@@ -47,6 +47,7 @@ export default class CreateMedLog extends Component{
                 pets.push({
                     petName: doc.data().petName
                 });
+                this.setState({pet: doc.data().petName})
             });
             this.setState({
                 petList: pets,
