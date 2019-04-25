@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Picker, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Picker, KeyboardAvoidingView, Alert } from 'react-native';
 import 'firebase/firestore';
 import * as firebase from 'firebase';
 import {w, h, totalSize} from "../../../../../../../../../FirebaseLogin/api/Dimensions/";
@@ -80,8 +80,6 @@ export default class CreateMedLog extends Component{
             case 'Description (optional)':
             this.setState({ isDescriptionCorrect: this.description.getInputValue() === ''});
             break;
-            default:
-            this.setState({ isNameCorrect: this.petName.getInputValue() === '' });
         }
         };
 
@@ -105,7 +103,7 @@ export default class CreateMedLog extends Component{
             this.addMyPet(medLogName, medDosage, medFreq, medStart, medSide, date, description);
             this.props.navigation.navigate('MyPets');
         } else {
-            console.alert('Fill up all fields correctly');
+            Alert.alert('Fill up all fields correctly');
         }
         })
     };
