@@ -17,15 +17,28 @@ export default class MyPets extends Component{
       petList: []
     });
     const curUser = firebase.auth().currentUser;
-    this.ref = firebase.firestore().collection('users').doc(curUser.uid).collection('pets');
+    this.ref = firebase.firestore().collection('users').doc(curUser.uid).collection('clients');
   }
 
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot((querySnapshot) => {
       const pets = [];
       querySnapshot.forEach((doc) => {
-        pets.push({
-          petName: doc.data().petName
+        firebase.firestore().collection('users').doc(doc.id).collection('pets').onSnapshot((snap) => {
+          snap.forEach((d) => {
+            
+          pets.push({
+            age: d.data().age,
+              breed: d.data().breed,
+              date: d.data().date,
+              description: d.data().description,
+              name: d.data().petName,
+              sex: d.data().sex,
+              symptoms: d.data().symptoms,
+              weight: d.data().weight,
+            owner: doc.data().firstName + " " + doc.data().lastName
+          });
+        });
         });
       });
       this.setState({
@@ -48,19 +61,23 @@ export default class MyPets extends Component{
               data = {this.state.petList}
               renderItem = {({ item, index }) => {
                 return (
-                  <PetListItems click={()=> this.props.navigation.navigate('ClientHome')} text={item.petName}/>
+                  <PetListItems click={()=> this.props.navigation.navigate('PetInfo', {
+                    petObj: item // object contains pet fields
+                  })} text= {item.name} 
+                  age= {item.age}
+                  breed= {item.breed}
+                  dateString= {item.date}
+                  description= {item.description}
+                  name= {item.name}
+                  sex= {item.sex}
+                  symptoms= {item.symptoms}
+                  weight= {item.weight}
+                  />
                 );
               }}
               keyExtractor={(item, index) => index.toString()}
             />
 
-            <Icon
-              name = 'add-circle-outline'
-              color='white'
-              onPress={() => this.props.navigation.navigate('AddPet')}
-              size={50}
-              style={{marginTop:h(2)}}
-              />
           </View>
 
         </ImageBackground>

@@ -13,8 +13,9 @@ import VetHome from './screens/VetHome/';
 import CreateLog from './screens/VetHome/screens/CreateLog';
 import ViewLogs from './screens/VetHome/screens/ViewLogs';
 import {w, h, totalSize} from "../FirebaseLogin/api/Dimensions";
-import AddPet from './screens/VetHome/screens/MyPets/screens/AddPet';
 import AddClient from './screens/VetHome/screens/MyClients/AddClient';
+import ClientInfo from './screens/VetHome/screens/MyClients/ClientInfo';
+import PetInfo from '../ClientScreens/screens/ClientHome/screens/MyPets/screens/PetInfo';
 
 const VetStackNavigator = createStackNavigator({
   VetHome:{
@@ -94,17 +95,6 @@ const VetStackNavigator = createStackNavigator({
     headerLayoutPreset: 'center',
     }),
   },
-  AddPet:{
-    screen: AddPet,
-    navigationOptions: () => ({
-    headerTintColor: 'white',
-    headerStyle: {
-      backgroundColor: '#101d26'
-    },
-    title: 'Add Pet',
-    headerLayoutPreset: 'center',
-    }),
-  },
   AddClient:{
     screen: AddClient,
     navigationOptions: () => ({
@@ -115,7 +105,29 @@ const VetStackNavigator = createStackNavigator({
     title: 'Add Client',
     headerLayoutPreset: 'center',
     })
-  }
+  },
+  ClientInfo:{
+    screen: ClientInfo,
+    navigationOptions: () => ({
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#101d26'
+      },
+      title: 'Client Info',
+      headerLayoutPreset: 'center',
+    }),
+  },
+  PetInfo:{
+    screen: PetInfo,
+    navigationOptions: () => ({
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#101d26'
+      },
+      title: 'Pet Info',
+      headerLayoutPreset: 'center',
+    }),
+  },
 });
 
 const ClientStackNavigator = createStackNavigator({
