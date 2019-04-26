@@ -73,6 +73,7 @@ export default class MyPets extends Component{
             />
 
             <Icon
+              accessible={true} accessibilityLabel="Add a pet" accessibilityHint="Add a pet to your account"
               name = 'add-circle-outline'
               color='white'
               onPress={() => this.props.navigation.navigate('AddPet')}
