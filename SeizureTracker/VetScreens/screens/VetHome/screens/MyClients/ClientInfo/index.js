@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, FlatList } f
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import {w, h, totalSize} from "../../../../../../FirebaseLogin/api/Dimensions";
-import PetListItems from '../../MyPets';
+import PetListItems from '../../../../../../ClientScreens/screens/ClientHome/screens/MyPets/PetListItems';
 
 const background = require('../../../../../../assets/background.png')
 const placehold = require('../../../../../../assets/upload.png')
