@@ -53,7 +53,7 @@ export default class Settings extends Component{
         />
         <View style={styles.container}>
           <DisplayLink/>
-          <Logout isOut={this.state.isLoggingOut} click={this.logOut} />
+          <Logout accessible={true} accessibilityLabel="Log Out" accessibilityHint="Log out of account" isOut={this.state.isLoggingOut} click={this.logOut} />
         </View>
         </ImageBackground>
       );

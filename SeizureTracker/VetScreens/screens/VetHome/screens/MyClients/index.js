@@ -61,6 +61,7 @@ export default class MyClients extends Component{
             />
 
             <Icon
+              accessible={true} accessibilityLabel="Add Client" accessibilityHint="Link a client with your account"
               name = 'add-circle-outline'
               color='white'
               onPress={() => this.props.navigation.navigate('AddClient')}
