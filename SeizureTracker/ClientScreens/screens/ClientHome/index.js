@@ -15,13 +15,13 @@ export default class ClientHome extends Component{
 
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start'}}>
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('MyPets')} style={styles.leftTouchable}>
+            <TouchableOpacity accessible={true} accessibilityLabel="My Pets" accessibilityHint="View and add pets" onPress={()=> this.props.navigation.navigate('MyPets')} style={styles.leftTouchable}>
               <Image 
               source = {require('../../../assets/petsButton.png')}
               style={styles.imageStyle}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('MyVets')} style={styles.rightTouchable}>
+            <TouchableOpacity accessible={true} accessibilityLabel="My Vets" accessibilityHint="View vets linked to your account" onPress={()=> this.props.navigation.navigate('MyVets')} style={styles.rightTouchable}>
               <Image 
               source = {require('../../../assets/vetsButton.png')}
               style={styles.imageStyle}
@@ -29,23 +29,23 @@ export default class ClientHome extends Component{
             </TouchableOpacity>
           </View>
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Notifications') } style={styles.leftTouchable} >
+            <TouchableOpacity accessible={true} accessibilityLabel="Notifications" accessibilityHint="View notifications" onPress={()=> this.props.navigation.navigate('Notifications') } style={styles.leftTouchable} >
               <Image 
               source = {require('../../../assets/comButton.png')}
               style={styles.imageStyle}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Info')} style={styles.rightTouchable}>
+            <TouchableOpacity accessible={true} accessibilityLabel="Epilepsy Info" accessibilityHint="Papers and useful sources on animal epilepsy" onPress={()=> this.props.navigation.navigate('Info')} style={styles.rightTouchable}>
               <Image 
               source = {require('../../../assets/infoButton.png')}
               style={styles.imageStyle}
               />
             </TouchableOpacity>
           </View>
-          <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
+          <View accessible={true} accessibilityLabel="Create a log" accessibilityHint="Takes you to log creation" style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
             <CreateLogButton click={()=> this.props.navigation.navigate('LogType') } />
           </View>
-          <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
+          <View accessible={true} accessibilityLabel="View logs" accessibilityHint="Takes you to log view screen" style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
             <ViewLogsButton click={()=> this.props.navigation.navigate('ViewLogs') } />
           </View>
         </View>
