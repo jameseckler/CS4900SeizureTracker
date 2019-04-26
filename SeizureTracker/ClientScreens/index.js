@@ -20,6 +20,7 @@ import CreateMedLog from './screens/ClientHome/screens/CreateLog/screens/LogType
 import CreateSeizureLog from './screens/ClientHome/screens/CreateLog/screens/LogType/screens/CreateSeizureLog/';
 import CreateOtherLog from './screens/ClientHome/screens/CreateLog/screens/LogType/screens/CreateOtherLog/';
 import LogLists from './screens/ClientHome/screens/ViewLogs/LogLists/';
+import LogInfo from './screens/ClientHome/screens/ViewLogs/LogInfo/';
 
 /*
 
