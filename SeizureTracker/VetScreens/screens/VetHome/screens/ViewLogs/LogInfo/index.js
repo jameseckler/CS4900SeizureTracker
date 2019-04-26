@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import 'firebase/firestore';
-import {w, h, totalSize} from "../../../../../FirebaseLogin/api/Dimensions";
+import {w, h, totalSize} from "../../../../../../FirebaseLogin/api/Dimensions";
 
-const background = require('../../../../../assets/background.png');
+const background = require('../../../../../../assets/background.png');
 
 export default class LogInfo extends Component{
   

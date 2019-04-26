@@ -40,7 +40,7 @@ export default class LogLists extends Component{
         // Initiates current user to curUser using Firebase API call
         const curUser = firebase.auth().currentUser;
         // Gets reference to user's pet's logs based off user uid and pet name
-        this.seizureRef = firebase.firestore().collection('users').doc(curUser.uid).collection('pets').doc(petObj.name).collection('seizureLogs');
+        this.seizureRef = firebase.firestore().collection('users').doc(petObj.id).collection('pets').doc(petObj.name).collection('seizureLogs');
 
         this.unsubscribe = this.seizureRef.onSnapshot((querySnapshot) => {
           const seizureList = [];
@@ -72,7 +72,7 @@ export default class LogLists extends Component{
 
         
         // Gets reference to pet's med logs
-        this.medRef = firebase.firestore().collection('users').doc(curUser.uid).collection('pets').doc(petObj.name).collection('medLogs');
+        this.medRef = firebase.firestore().collection('users').doc(petObj.id).collection('pets').doc(petObj.name).collection('medLogs');
 
         this.unsubscribe = this.medRef.onSnapshot((querySnapshot) => {
           const medList = [];
@@ -94,7 +94,7 @@ export default class LogLists extends Component{
 
 
         // Gets reference to pet's other logs
-        this.otherRef = firebase.firestore().collection('users').doc(curUser.uid).collection('pets').doc(petObj.name).collection('otherLogs');
+        this.otherRef = firebase.firestore().collection('users').doc(petObj.id).collection('pets').doc(petObj.name).collection('otherLogs');
 
         this.unsubscribe = this.otherRef.onSnapshot((querySnapshot) => {
           const otherList = [];

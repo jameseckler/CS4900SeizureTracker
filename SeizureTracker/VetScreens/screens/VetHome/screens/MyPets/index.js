@@ -36,7 +36,8 @@ export default class MyPets extends Component{
               sex: d.data().sex,
               symptoms: d.data().symptoms,
               weight: d.data().weight,
-            owner: doc.data().firstName + " " + doc.data().lastName
+            owner: doc.data().firstName + " " + doc.data().lastName,
+            ownerID: doc.id
           });
         });
         });
@@ -72,6 +73,7 @@ export default class MyPets extends Component{
                   sex= {item.sex}
                   symptoms= {item.symptoms}
                   weight= {item.weight}
+                  id= {item.ownerID}
                   />
                 );
               }}
