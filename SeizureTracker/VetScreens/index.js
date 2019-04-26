@@ -118,15 +118,15 @@ const VetStackNavigator = createStackNavigator({
   }
 });
 
-const PetStackNavigator = createStackNavigator({
+const ClientStackNavigator = createStackNavigator({
   MyPets:{
-    screen: MyPets,
+    screen: MyClients,
     navigationOptions: () => ({
       headerTintColor: 'white',
       headerStyle: {
         backgroundColor: '#101d26'
       },
-      title: 'Pet List',
+      title: 'Client List',
       headerLayoutPreset: 'center',
       }),
   },
@@ -141,7 +141,7 @@ export default createBottomTabNavigator({
         <Icon name="ios-home" color = {tintColor} size={24} />
       )
   }},
-  PetStackNavigator: { screen: PetStackNavigator,
+  ClientStackNavigator: { screen: ClientStackNavigator,
     // individual tab options
     navigationOptions: {
       tabBarLabel: 'Clients',
@@ -159,7 +159,7 @@ export default createBottomTabNavigator({
   }}
 }, {//routerconfig
   initialRouteName: 'VetStackNavigator',
-  order: ['VetStackNavigator', 'PetStackNavigator', 'Settings'],
+  order: ['VetStackNavigator', 'ClientStackNavigator', 'Settings'],
   //navigation options for complete tab navigator
   navigationOptions: {
     tabBarVisible: true
