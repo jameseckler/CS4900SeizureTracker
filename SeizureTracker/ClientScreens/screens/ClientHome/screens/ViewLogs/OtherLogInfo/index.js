@@ -5,7 +5,7 @@ import {w, h, totalSize} from "../../../../../../FirebaseLogin/api/Dimensions";
 
 const background = require('../../../../../../assets/background.png');
 
-export default class LogInfo extends Component{
+export default class OtherLogInfo extends Component{
   
     render() {
         const { navigation } = this.props;

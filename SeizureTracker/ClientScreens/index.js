@@ -21,6 +21,8 @@ import CreateSeizureLog from './screens/ClientHome/screens/CreateLog/screens/Log
 import CreateOtherLog from './screens/ClientHome/screens/CreateLog/screens/LogType/screens/CreateOtherLog/';
 import LogLists from './screens/ClientHome/screens/ViewLogs/LogLists/';
 import LogInfo from './screens/ClientHome/screens/ViewLogs/LogInfo/';
+import OtherLogInfo from './screens/ClientHome/screens/ViewLogs/OtherLogInfo/';
+import MedLogInfo from './screens/ClientHome/screens/ViewLogs/MedLogInfo/';
 
 /*
 
@@ -201,6 +203,28 @@ const HomeStackNavigator = createStackNavigator({
       backgroundColor: '#101d26'
     },
     title: 'Log Info',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  MedLogInfo:{
+    screen: MedLogInfo,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Medical Log Info',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  OtherLogInfo:{
+    screen: OtherLogInfo,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Other Log Info',
     headerLayoutPreset: 'center',
     }),
   }

@@ -5,11 +5,11 @@ import {w, h, totalSize} from "../../../../../../FirebaseLogin/api/Dimensions";
 
 const background = require('../../../../../../assets/background.png');
 
-export default class LogInfo extends Component{
+export default class MedLogInfo extends Component{
   
     render() {
         const { navigation } = this.props;
-        const seizureLogObj = navigation.getParam('seizureLogObj', 'Error: no log found');
+        const medLogObj = navigation.getParam('medLogObj', 'Error: no log found');
 
 
         const shadowStyle={
@@ -24,32 +24,20 @@ export default class LogInfo extends Component{
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <View style={[styles.viewStyle, shadowStyle]}>
               <View style={{ flex: 1, alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start', marginTop: h(.5)}}>
-                  <Text style={{ color:'white', fontSize: totalSize(3)}}>Seizure Log: {seizureLogObj.date}</Text>
+                  <Text style={{ color:'white', fontSize: totalSize(3)}}>Seizure Log: {medLogObj.name}</Text>
                   <View style={{borderBottomColor: 'white', borderBottomWidth: 1, width: '100%', marginTop: h(2)}}/>
                   <View style={{ flex: 1, alignItems: 'flex-start', flexDirection: 'row', justifyContent: 'flex-start', marginLeft: w(1.5),
                     marginTop: h(3)}}>
                     <View style={styles.row1}>
-                      <Text style={styles.textField}>Date: <Text style={styles.textCus}>{seizureLogObj.date}</Text> </Text>
-                      <Text style={styles.textField}>Awake before: <Text style={styles.textCus}>{seizureLogObj.awakeBefore}</Text> </Text>
-                      <Text style={styles.textField}>Body stiffness: <Text style={styles.textCus}>{seizureLogObj.bodyBefore}</Text></Text>
-                      <Text style={styles.textField}>Urination: <Text style={styles.textCus}>{seizureLogObj.urineBefore}</Text></Text>
-                      <Text style={styles.textField}>Defecation: <Text style={styles.textCus}>{seizureLogObj.defBefore}</Text></Text>
-                      <Text style={styles.textField}>Drooling/Frothing: <Text style={styles.textCus}>{seizureLogObj.droolBefore}</Text></Text>
+                      <Text style={styles.textField}>Description: <Text style={styles.textCus}>{medLogObj.name}</Text> </Text>
                     </View>
                     <View style={styles.row2}>
-                      <Text style={styles.textField}>Type: <Text style={styles.textCus}>{seizureLogObj.typeBefore}</Text></Text>
-                      <Text style={styles.textField}>Severity: <Text style={styles.textCus}>{seizureLogObj.severityBefore}</Text></Text>
-                      <Text style={styles.textField}>Head affected: <Text style={styles.textCus}>{seizureLogObj.headBefore}</Text></Text>
-                      <Text style={styles.textField}>Front or back affected: <Text style={styles.textCus}>{seizureLogObj.frontBefore}</Text></Text>
-                      <Text style={styles.textField}>Which side affected: <Text style={styles.textCus}>{seizureLogObj.sideBefore}</Text></Text>
-                      <Text style={styles.textField}>Paddling present: <Text style={styles.textCus}>{seizureLogObj.paddlingBefore}</Text></Text>
+
                     </View>
                   </View>
                   <View style={{borderBottomColor: 'white', borderBottomWidth: 1, width: '100%', marginTop: h(12)}}/>
                   <View style={{flex: 1, flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start', marginLeft: w(1)}}>
-                    <Text style={styles.textField2}>Symptoms before: <Text style={styles.textCus}>{seizureLogObj.symptomsBefore}</Text></Text>
-                    <Text style={styles.textField3}>Symptoms after: <Text style={styles.textCus}>{seizureLogObj.symptomsAfter}</Text></Text>
-                    <Text style={styles.textField2}>Medication given: <Text style={styles.textCus}>{seizureLogObj.medicationAfter}</Text></Text>
+
                   </View>
               </View>
             </View>

@@ -21,6 +21,7 @@ export default class LogLists extends Component{
             medLogs: false,
             selectedIndex: 0,
             seizureList: [],
+            medList: [],
             petName: '',
             petObj: '',
         }
@@ -64,6 +65,23 @@ export default class LogLists extends Component{
           });
           this.setState({
             seizureList: seizureList,
+            loading: false,
+          })
+        })
+
+        
+        // Gets reference to user's pet's logs based off user uid and pet name
+        this.medRef = firebase.firestore().collection('users').doc(curUser.uid).collection('pets').doc(petObj.name).collection('medLogs');
+
+        this.unsubscribe = this.medRef.onSnapshot((querySnapshot) => {
+          const medList = [];
+          querySnapshot.forEach((doc) => {
+            medList.push({
+              description: doc.data().description,
+            });
+          });
+          this.setState({
+            medList: medList,
             loading: false,
           })
         })
@@ -147,16 +165,24 @@ export default class LogLists extends Component{
               }
               {
                   this.state.medLogs ?  
-                  <KeyboardAvoidingView 
-                      keyboardVerticalOffset = {Header.HEIGHT + 20} 
-                      style={{flex: 1}}
-                      behavior="padding">
-                      <ScrollView>
-                          <View style={styles.container}>
-                              
-                          </View>
-                      </ScrollView>
-                  </KeyboardAvoidingView>
+                  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end', marginBottom: h(4)}}>
+                    <FlatList 
+                      data = {this.state.medList}
+                      // Renders each item in the petList state array by passing the pet object to PetListItems
+                      renderItem = {({ item, index }) => {
+                        // Returns PetListItems component which is a touchable button linking to each pet's info page
+                        return (
+                          <PetListItems click={()=> this.props.navigation.navigate('MedLogInfo', {
+                            seizureMedObj: item // object contains pet fields
+                          })} 
+                          name= {item.description}
+                          
+                          />
+                        );
+                      }}
+                      keyExtractor={(item, index) => index.toString()}
+                    />
+                  </View>
                   : null
               }
                               {
