@@ -98,7 +98,7 @@ export default class CreateMedLog extends Component{
         isSideCorrect: medSide === '',
         }, () => {
         if(medLogName !== '' && medDosage !== '' && medFreq !== '' && medSide !== ''  ){
-            this.addMyPet(medLogName, medDosage, medFreq, medStart, medSide, date, description);
+            this.addMyMed(medLogName, medDosage, medFreq, medStart, medSide, date, description);
             this.props.navigation.navigate('ClientHome');
         } else {
             console.warn('Fill up all fields correctly');
@@ -106,7 +106,7 @@ export default class CreateMedLog extends Component{
         })
     };
 
-    addMyPet = (medLogName, medDosage, medFreq, medStart, medSide, date, description) => {
+    addMyMed = (medLogName, medDosage, medFreq, medStart, medSide, date, description) => {
         const db = firebase.firestore();
         const curUser = firebase.auth().currentUser;
         const petRef = db.collection('users').doc(curUser.uid).collection('pets').doc(this.state.pet).collection('medLogs').doc(medLogName);

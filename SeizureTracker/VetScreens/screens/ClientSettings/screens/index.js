@@ -4,7 +4,6 @@ import 'firebase/firestore';
 import firebase from "firebase";
 import Logout from './Logout';
 import { Header } from 'react-native-elements';
-import MyPets from '.';
 
 const background = require('../../../../assets/background.png');
 
