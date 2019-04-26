@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, ImageBackground, TouchableOpacity, Imag
 import 'firebase/firestore';
 import {w, h, totalSize} from "../../../FirebaseLogin/api/Dimensions";
 import InputField from '../../../FirebaseLogin/components/InputField';
+import SearchButton from './SearchButton';
 
 const background = require('../../../assets/background.png');
 
@@ -43,17 +44,14 @@ export default class VetHome extends Component{
           </View>
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
             <InputField
-                      placeholder="Search for pets..."
-                      autoCapitalize="words"
-                      style={styles.input}
-            />
-          </View>
-          <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <InputField
                       placeholder="Search for clients..."
                       autoCapitalize="words"
                       style={styles.input}
+                      onSubmitEditing={this.props.navigation.navigate('ClientSearch')}
             />
+          </View>
+          <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
+            <SearchButton click={() => this.props.navigation.navigate('ClientSearch')} />
           </View>
         </View>
 
