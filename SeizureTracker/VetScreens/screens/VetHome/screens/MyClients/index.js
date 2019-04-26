@@ -25,7 +25,7 @@ export default class MyClients extends Component{
       querySnapshot.forEach((doc) => {
         clients.push({
           name: doc.data().firstName + " " + doc.data().lastName,
-          id: doc
+          id: doc.id
         });
       });
       this.setState({

@@ -8,7 +8,7 @@ import {createStackNavigator} from 'react-navigation';
 import MyPets from './screens/VetHome/screens/MyPets';
 import MyClients from './screens/VetHome/screens/MyClients';
 import Notifications from './screens/VetHome/screens/Notifications';
-import Info from './screens/VetHome/screens/Info';
+import Info from '../ClientScreens/screens/ClientHome/screens/Info';
 import VetHome from './screens/VetHome/';
 import CreateLog from './screens/VetHome/screens/CreateLog';
 import ViewLogs from './screens/VetHome/screens/ViewLogs';
