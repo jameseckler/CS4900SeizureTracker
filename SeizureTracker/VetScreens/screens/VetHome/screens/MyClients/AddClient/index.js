@@ -31,13 +31,7 @@ export default class AddClient extends Component{
         isIdCorrect: id === ''
         }, () => {
         if(id !== ''){
-            var client = this.addClient(id);
-            if(client == undefined) {
-                Alert.alert('Client ID ' + id + ' does not exist');
-            }
-            else {
-                this.props.navigation.navigate('MyClients');
-            }
+            this.addClient(id);   
         } else {
             Alert.alert('Fill up all fields correctly');
         }
@@ -48,35 +42,48 @@ export default class AddClient extends Component{
         const db = firebase.firestore();
         const curUser = firebase.auth().currentUser;
 
-        const client = db.collection('users').where('linkID', '==', id).get();
-        console.log(client);
+        db.collection('users').where('linkID', '==', id).get().then(querySnapshot => {
+          if (querySnapshot.empty) {
+            Alert.alert('Client ID ' + id + ' does not exist');
+          }
+          else { {/* Link ID exists */}
+            const doc = querySnapshot.docs[0].data();
+            console.log('Document data: ', querySnapshot.docs[0].id);
 
-        {/* Link ID exists */}
-        if (client != undefined) {
-
-          {/* Add client details to vet account */}
-            const clientRef = db.collection('users').doc(curUser.uid).collection('clients').doc(client.uid);
+            {/* Add client details to vet account */}
+            const clientRef = db.collection('users').doc(curUser.uid).collection('clients').doc(querySnapshot.docs[0].id);
 
             clientRef.set({
                 linkID: id,
-                uid: client.uid,
-                firstName: client.firstName,
-                lastName: client.lasName       
+                firstName: doc.firstName,
+                lastName: doc.lastName       
             });
+
+            console.log('Successfully written to vet');
 
             {/* Add vet details to client account */}
-            const addToClient = db.collection('users').doc(client.uid).collection('vets').doc(curUser.uid);
-            const myAccount = db.collection('users').doc(curUser.uid);
+            const addToClient = db.collection('users').doc(querySnapshot.docs[0].id).collection('vets').doc(curUser.uid);
+            db.collection('users').doc(firebase.auth().currentUser.uid).get().then(data => {
 
-            addToClient.set({
-              linkID: myAccount.linkID,
-              firstName: myAccount.firstName,
-              lastName: myAccount.lastName
+              const myAccount = data.data();
+
+              addToClient.set({
+                linkID: myAccount.linkID,
+                firstName: myAccount.firstName,
+                lastName: myAccount.lastName
+              });
+
             });
 
-        }
+            console.log('Successfully written to client');
 
-        return client;
+            
+            this.props.navigation.navigate('MyClients');
+          }
+        })
+        .catch(err => {
+          console.log('Error getting document', err);
+        });
     };
   
     render() {
