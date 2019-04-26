@@ -24,8 +24,10 @@ export default class MyVets extends Component{
     this.unsubscribe = this.ref.onSnapshot((querySnapshot) => {
       const vets = [];
       querySnapshot.forEach((doc) => {
+        data = doc.data();
         vets.push({
-          vetName: doc.data().name
+          vetName: data.firstName + " " + data.lastName,
+          id: doc.id
         });
       });
 
