@@ -17,15 +17,21 @@ export default class MyPets extends Component{
       petList: []
     });
     const curUser = firebase.auth().currentUser;
-    this.ref = firebase.firestore().collection('users').doc(curUser.uid).collection('pets');
+    this.ref = firebase.firestore().collection('users').doc(curUser.uid).collection('clients');
   }
 
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot((querySnapshot) => {
       const pets = [];
       querySnapshot.forEach((doc) => {
-        pets.push({
-          petName: doc.data().petName
+        firebase.firestore().collection('users').doc(doc.id).collection('pets').onSnapshot((snap) => {
+          snap.forEach((d) => {
+            console.log(d.data());
+          pets.push({
+            petName: d.data().petName,
+            owner: doc.data().firstName + " " + doc.data().lastName
+          });
+        });
         });
       });
       this.setState({
@@ -48,19 +54,12 @@ export default class MyPets extends Component{
               data = {this.state.petList}
               renderItem = {({ item, index }) => {
                 return (
-                  <PetListItems click={()=> this.props.navigation.navigate('ClientHome')} text={item.petName}/>
+                  <PetListItems click={()=> this.props.navigation.navigate('VetHome')} text={item.petName}/>
                 );
               }}
               keyExtractor={(item, index) => index.toString()}
             />
 
-            <Icon
-              name = 'add-circle-outline'
-              color='white'
-              onPress={() => this.props.navigation.navigate('AddPet')}
-              size={50}
-              style={{marginTop:h(2)}}
-              />
           </View>
 
         </ImageBackground>
