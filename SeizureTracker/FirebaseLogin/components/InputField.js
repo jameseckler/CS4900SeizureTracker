@@ -4,13 +4,22 @@ import {w, h, totalSize} from '../api/Dimensions';
 
 const close = require('../assets/close.png');
 
+/*
+  Input field for generic user input for usage throughout the application
+  Includes properties for security, style, and ease of use.
+*/
 export default class InputField extends Component {
+  // text state for storing the value inputted by user
   state = {
     text: ''
   };
 
+  // Simple method that returns the text state inputted by the user
+  // Used for getting the input value by outside functions/classes
   getInputValue = () => this.state.text;
 
+  // Renders TextInput box with properties for:
+  // secureText, keyboard accessibility, blurs, focuses, style
   render() {
     return (
       <View style={[styles.container, this.props.style, this.props.error ? styles.containerError : {}]}>
@@ -38,6 +47,7 @@ export default class InputField extends Component {
   }
 }
 
+// Properties group defaults for TextInput above
 InputField.defaultProps = {
   focus: () => {},
   style: {},
@@ -50,6 +60,7 @@ InputField.defaultProps = {
   autoCapitalize: "none",
 };
 
+// Styles grouped, names indicate usage
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ffffff44',

@@ -4,6 +4,7 @@ import 'firebase/firestore';
 
 const background = require('../../../../../assets/background.png');
 
+// Delete
 export default class PetList extends Component{
   
     render() {

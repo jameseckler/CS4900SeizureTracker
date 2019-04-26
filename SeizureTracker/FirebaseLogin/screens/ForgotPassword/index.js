@@ -9,15 +9,21 @@ const email = require('../../assets/email.png');
 
 export default class ForgotPassword extends Component {
 
+  // State for checking if email is correct/verified
   state = {
     isEmailCorrect: false,
   };
 
+  // Receives user's email as parameter and checks it
+  // Proceeds to call Firebase API function to send email
   sendEmail = () => {
+    // Assigns user email to const from InputField below
     const email = this.email.getInputValue();
+    // Verifies email
     this.setState({
       isEmailCorrect: email === '',
     }, () => {
+      // Checks for null
       if(email !== ''){
         this.sendEmailWithPassword(email);
       } else {
@@ -26,17 +32,25 @@ export default class ForgotPassword extends Component {
     });
   };
 
+  /*
+    Calls Firebase API function to send recovery email to
+    email indicated by user.
+  */
   sendEmailWithPassword = (email) => {
+    // Firebase API call to send email with recovery details.
     Firebase.sendEmailWithPassword(email)
+      // Changes screen back to login page after email sends
       .then(result => {
         if(result) this.props.change('login')();
       });
   };
 
+  // Ensures InputField has a value then updates it on focus change
   onFocusChanged = () => {
     this.setState({ isEmailCorrect: this.email.getInputValue() === '' });
   };
 
+  // Renders InputField asking for an email to recover
   render(){
     return (
       <View style={styles.container}>
@@ -51,9 +65,12 @@ export default class ForgotPassword extends Component {
           ref={ref => this.email = ref}
           icon={email}
         />
+        {/* Touchable button that calls sendEmail() when pressed, 
+        also navigates to login page */}
         <TouchableOpacity onPress={this.sendEmail} activeOpacity={0.6} style={styles.button}>
           <Text style={styles.buttonText}>Send Email</Text>
         </TouchableOpacity>
+         {/* Touchable back button allowing user to go back to login page*/}
         <TouchableOpacity onPress={this.props.change('login')} style={styles.touchable}>
           <Text style={styles.login}>{'<'} Back To Login</Text>
         </TouchableOpacity>
@@ -62,10 +79,12 @@ export default class ForgotPassword extends Component {
   }
 }
 
+// Properties for class
 ForgotPassword.propTypes = {
   change: PropTypes.func.isRequired,
 };
 
+// Styles grouped, names indicate usage
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -17,7 +17,6 @@ export default class CreateMedLog extends Component{
         isLogNameCorrect: false,
         isDosageCorrect: false,
         isFrequencyCorrect: false,
-        isStartCorrect: false,
         isSideCorrect: false,
         isDescriptionCorrect: false,
         };
@@ -30,6 +29,7 @@ export default class CreateMedLog extends Component{
         this.state = {
             petList: [],
             date: d,
+            medDateStarted: new Date(),
             time: d.getTime(),
             pet: ''
         }
@@ -69,10 +69,6 @@ export default class CreateMedLog extends Component{
             this.setState({ isFrequencyCorrect: this.medFreq.getInputValue() === '' });
             this.weight.input.focus();
             break;
-            case 'Start':
-            this.setState({ isStartCorrect: this.medStart.getInputValue() === ''});
-            this.symptoms.input.focus();
-            break;
             case 'Side effects':
             this.setState({ isSideCorrect: this.medSide.getInputValue() === ''});
             this.description.input.focus();
@@ -81,15 +77,15 @@ export default class CreateMedLog extends Component{
             this.setState({ isDescriptionCorrect: this.description.getInputValue() === ''});
             break;
             default:
-            this.setState({ isNameCorrect: this.petName.getInputValue() === '' });
+            this.setState({ isNameCorrect: this.medLogName.getInputValue() === '' });
         }
         };
 
-    checkMyPet = () => {
+    checkMyMed= () => {
         const medLogName = this.medLogName.getInputValue();
         const medDosage = this.medDosage.getInputValue();
         const medFreq = this.medFreq.getInputValue();
-        const medStart = this.medStart.getInputValue();
+        const medStart = this.state.medDateStarted;
         const medSide = this.medSide.getInputValue();
         const date = this.state.date;
         const description = this.description.getInputValue();
@@ -98,14 +94,13 @@ export default class CreateMedLog extends Component{
         isLogNameCorrect: medLogName === '',
         isDosageCorrect: medDosage === '',
         isFrequencyCorrect: medFreq === '',
-        isStartCorrect: medStart === '',
         isSideCorrect: medSide === '',
         }, () => {
-        if(medLogName !== '' && medDosage !== '' && medFreq !== '' && medStart!== '' && medSide !== ''  ){
+        if(medLogName !== '' && medDosage !== '' && medFreq !== '' && medSide !== ''  ){
             this.addMyPet(medLogName, medDosage, medFreq, medStart, medSide, date, description);
-            this.props.navigation.navigate('MyPets');
+            this.props.navigation.navigate('ClientHome');
         } else {
-            console.alert('Fill up all fields correctly');
+            console.warn('Fill up all fields correctly');
         }
         })
     };
@@ -134,11 +129,11 @@ export default class CreateMedLog extends Component{
         behavior="padding">
         <ScrollView>
             <View style={styles.container}>
-                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}}>  
-                    <Text style={{color:'white', fontSize: 21}}>Pet: </Text>
+                <Text style={{color:'white', fontSize: 18}}>Please select the pet being medicated: </Text>
+                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', backgroundColor: '#101d26', borderColor: 'white' }}>  
                     <Picker
                         selectedValue={this.state.pet}
-                        style={{height: 90, width: 170, color: 'white'}}
+                        style={{width: 170, color: 'white'}}
                         onValueChange={(itemValue, itemIndex) => 
                             this.setState({pet: itemValue})
                         }>
@@ -147,53 +142,78 @@ export default class CreateMedLog extends Component{
                         )}
                     </Picker>
                 </View>
+                <Text style={{color:'white', fontSize: 15, marginTop: h(4)}}>What type of medication was given? </Text>
                 <InputField
-                    placeholder="medLogName"
+                    placeholder="Type"
                     autoCapitalize="words"
                     focus={this.changeInputFocus}
                     style={styles.input}
                     error={this.state.isLogNameCorrect}
                     ref={ref => this.medLogName = ref}
                 />
+                <Text style={{color:'white', fontSize: 15, marginTop: h(4)}}>What dosage was used (mg/ml)? </Text>
                 <InputField
-                    placeholder="medDosage"
+                    placeholder="Dosage (mg/ml)"
                     autoCapitalize="words"
                     style={styles.input}
                     error={this.state.isDosageCorrect}
                     focus={this.changeInputFocus}
                     ref={ref => this.medDosage = ref}
                 />
+                <Text style={{color:'white', fontSize: 15, marginTop: h(4)}}>How frequently is this medication given?</Text>
                 <InputField
-                    placeholder="medFreq"
+                    placeholder="Frequency"
                     autoCapitalize="words"
                     focus={this.changeInputFocus}
                     style={styles.input}
                     error={this.state.isFrequencyCorrect}
                     ref={ref => this.medFreq = ref}
                 />
+                <Text style={{color:'white', fontSize: 15, marginTop: h(4)}}>When was this medication started?</Text>
+                <DatePicker
+                        style={{width: 200, marginBottom: h(2)}}
+                        date={this.state.medDateStarted}
+                        mode="date"
+                        placeholder="select date"
+                        format="YYYY-MM-DD"
+                        minDate="2014-01-01"
+                        maxDate="2030-01-01"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        customStyles={{
+                        dateIcon: {
+                            position: 'absolute',
+                            left: 0,
+                            top: 4,
+                            marginLeft: 0
+                        },
+                        dateInput: {
+                            marginLeft: 36,
+                        },
+                        dateText:{
+                            color: 'white',
+                            justifyContent: 'flex-start'
+                          }
+                        }}
+                        onDateChange={(date) => {this.setState({medDateStarted: date})}}
+                    />
+                <Text style={{color:'white', fontSize: 15, marginTop: h(4)}}>Have any side effects appeared?</Text>
                 <InputField
-                    placeholder="medStart"
-                    autoCapitalize="words"
-                    style={styles.input}
-                    error={this.state.isStartCorrect}
-                    focus={this.changeInputFocus}
-                    ref={ref => this.medStart = ref}
-                />
-                <InputField
-                    placeholder="medSide"
+                    placeholder="Side effects"
                     autoCapitalize="words"
                     focus={this.changeInputFocus}
                     style={styles.input}
                     error={this.state.isSideCorrect}
                     ref={ref => this.medSide = ref}
                 />
+                <Text style={{color:'white', fontSize: 15, marginTop: h(4)}}>Additional information: </Text>
                 <InputField
                     placeholder="Description (optional)"
                     style={styles.input}
                     focus={this.changeInputFocus}
                     ref={ref => this.description = ref}
                 />
-                <SubmitButton click={this.checkMyPet} />
+                <SubmitButton click={this.checkMyMed} />
             </View>
           </ScrollView>
           </KeyboardAvoidingView>

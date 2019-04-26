@@ -3,6 +3,10 @@ import { Dimensions, StyleSheet, TouchableOpacity, Text, ActivityIndicator } fro
 import PropTypes from 'prop-types';
 import {w, h, totalSize} from "../../../../FirebaseLogin/api/Dimensions";
 
+/*
+  Logout component that contains a button with Logout text
+  Will be used to call logOut() function in ClientSettings
+*/
 export default class Logout extends Component {
 
   render() {
@@ -19,11 +23,14 @@ export default class Logout extends Component {
   }
 }
 
+// Properties to indicate function on click and check logout success
 Logout.propTypes = {
   click: PropTypes.func.isRequired,
   isOut: PropTypes.bool.isRequired,
 };
 
+
+// Styles grouped, names indicate usage
 const styles = StyleSheet.create({
   button: {
     width: w(85),

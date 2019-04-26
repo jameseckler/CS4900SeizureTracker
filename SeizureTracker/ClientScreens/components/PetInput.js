@@ -4,13 +4,21 @@ import {w, h, totalSize} from '../api/Dimensions';
 
 const close = require('../assets/close.png');
 
+/*
+  Custom component for collecting text input for adding pets for clients
+  Contains unique properties and stylings specific to the AddPets page
+*/
 export default class PetInput extends Component {
+  // Text state for setting with inputted text
   state = {
     text: ''
   };
 
+  // Gets the user input from TextInput and sets it to the state
   getInputValue = () => this.state.text;
 
+  // Renders PetInput box with properties for:
+  // secureText, keyboard accessibility, blurs, focuses, style
   render() {
     return (
       <View style={[styles.container, this.props.style, this.props.error ? styles.containerError : {}]}>
@@ -38,6 +46,7 @@ export default class PetInput extends Component {
   }
 }
 
+// Properties group defaults for TextInput above
 InputField.defaultProps = {
   focus: () => {},
   style: {},
@@ -50,6 +59,7 @@ InputField.defaultProps = {
   autoCapitalize: "none",
 };
 
+// Styles grouped, names indicate usage
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ffffff44',

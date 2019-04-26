@@ -5,35 +5,57 @@ import {w, h, totalSize} from '../../api/Dimensions';
 import GetStarted from './GetStarted';
 import Firebase from '../../api/Firebase';
 
+// Main logo for login page
 const logo = require('../../assets/logo1.png');
+// Email InputField icon
 const email = require('../../assets/email.png');
+// Password InputField icon
 const password = require('../../assets/password.png');
 
+/*
+  Login class for taking credential input and verifying with the backend
+  Includes setting user state and authentication measures.
+  Acts as start menu for application and allows navigation to
+  registration and forgotten password pages.
+*/
 export default class Login extends Component {
 
+  // States to verify and check against correct credentials
   state = {
     isEmailCorrect: false,
     isPasswordCorrect: false,
     isLogin: false,
   };
 
+  /* Called when GetStarted button component is pressed
+   Assigns user email and password input to const and passes
+   them to
+  */
   getStarted = () => {
+    // Assigns user credentials with encrypted password to consts
     const email = this.email.getInputValue();
     const password = this.password.getInputValue();
 
+    // Checks if either field is null
     this.setState({
       isEmailCorrect: email === '',
       isPasswordCorrect: password === '',
     }, () => {
+      // If not null, sends credentials to login function for authentication
       if(email !== '' && password !== ''){
         this.loginToFireBase(email, password);
-      } else {
+      } /* If null, warn */else {
         console.warn('Fill up all fields')
       }
     });
   };
 
+  /*
+    Changes focus of input upon submitting for one field
+    params: name of email inputted by user
+  */
   changeInputFocus = name => () => {
+    // If email input is filled set email to state and continues user to password field
     if (name === 'Email') {
       this.setState({ isEmailCorrect: this.email.getInputValue() === '' });
       this.password.input.focus();
@@ -42,19 +64,32 @@ export default class Login extends Component {
     }
   };
 
+  /*
+    Calls Firebase API function to log user in with provided encrypted credentials.
+    params: user submitted email and encrypted password
+  */
   loginToFireBase = (email, password) => {
     this.setState({ isLogin: true });
+    // Calls Firebase authentication and login method
     Firebase.userLogin(email, password)
       .then(user => {
+        // Returns logged in user state if successful
         if(user) this.props.success(user);
+        // Returns false login if failed
         this.setState({ isLogin: false });
       });
   };
 
+  /*
+    Renders two input fields for email and password.
+    Password contains secure text entry.
+    Includes Login button and navigation to registration and forgot password pages
+  */
   render() {
     return (
       <View style={styles.container}>
         <Image style={styles.icon2} resizeMode="contain" source={logo}/>
+        {/* Email input */}
         <InputField
           placeholder="Email"
           keyboardType="email-address"
@@ -64,6 +99,7 @@ export default class Login extends Component {
           ref={ref => this.email = ref}
           icon={email}
         />
+        {/* Secure password input */}
         <InputField
           placeholder="Password"
           returnKeyType="done"
@@ -74,11 +110,13 @@ export default class Login extends Component {
           focus={this.changeInputFocus}
           icon={password}
         />
+        {/* Login button component, passes credentials to getStarted method */}
         <GetStarted
           click={this.getStarted}
           isLogin={this.state.isLogin}
         />
         <View style={styles.textContainer}>
+          {/* Two buttons for navigating to creating account and password recovery respectively */}
           <TouchableOpacity onPress={this.props.change('register')} style={styles.touchable} activeOpacity={0.6}>
             <Text style={styles.createAccount}>Create Account</Text>
           </TouchableOpacity>
@@ -91,6 +129,7 @@ export default class Login extends Component {
   }
 }
 
+// Styles grouped, names indicate usage
 const styles = StyleSheet.create({
   container: {
     flex: 1,

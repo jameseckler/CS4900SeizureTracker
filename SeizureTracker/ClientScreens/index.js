@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import 'firebase/firestore';
 import {createBottomTabNavigator} from 'react-navigation';
-import ClientPets from './screens/ClientPets';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Settings from './screens/ClientSettings/screens';
 import {createStackNavigator} from 'react-navigation';
@@ -10,11 +9,9 @@ import MyPets from './screens/ClientHome/screens/MyPets';
 import MyVets from './screens/ClientHome/screens/MyVets';
 import Notifications from './screens/ClientHome/screens/Notifications';
 import Info from './screens/ClientHome/screens/Info';
-import PetList from './screens/ClientPets/screens/PetList';
 import ClientHome from './screens/ClientHome/';
 import CreateLog from './screens/ClientHome/screens/CreateLog';
 import ViewLogs from './screens/ClientHome/screens/ViewLogs';
-import {w, h, totalSize} from "../FirebaseLogin/api/Dimensions";
 import DisplayLink from './components/DisplayLink';
 import AddPet from './screens/ClientHome/screens/MyPets/screens/AddPet';
 import PetInfo from './screens/ClientHome/screens/MyPets/screens/PetInfo';
@@ -23,6 +20,21 @@ import CreateMedLog from './screens/ClientHome/screens/CreateLog/screens/LogType
 import CreateSeizureLog from './screens/ClientHome/screens/CreateLog/screens/LogType/screens/CreateSeizureLog/';
 import CreateOtherLog from './screens/ClientHome/screens/CreateLog/screens/LogType/screens/CreateOtherLog/';
 
+/*
+
+@@MAIN NAVIGATOR PAGE FOR CLIENTS@@
+@@ALL CLIENT PAGES MUST BE ADDED HERE FOR NAVIGATION@@
+@@MUST INCLUDE IMPORTS FROM PAGES ABOVE@@
+This page acts as the stack navigator for each page.
+All variable clusters under HomeStackNavigator are pages within
+the client overall system. 
+
+Simply adding a variable and grouping with the same formatting as the others
+will create another linkage to a page index.js as long as that page is imported above.
+
+navigationOptions can be customized but should be left alone to maintain consistent style
+
+*/
 const HomeStackNavigator = createStackNavigator({
   ClientHome:{
     screen: ClientHome,
@@ -142,7 +154,7 @@ const HomeStackNavigator = createStackNavigator({
     headerStyle: {
       backgroundColor: '#101d26'
     },
-    title: 'Create Medication Log',
+    title: 'Create Seizure Log',
     headerLayoutPreset: 'center',
     }),
   },
@@ -153,7 +165,7 @@ const HomeStackNavigator = createStackNavigator({
     headerStyle: {
       backgroundColor: '#101d26'
     },
-    title: 'Create Medication Log',
+    title: 'Create Other Log',
     headerLayoutPreset: 'center',
     }),
   },
@@ -164,12 +176,13 @@ const HomeStackNavigator = createStackNavigator({
     headerStyle: {
       backgroundColor: '#101d26'
     },
-    title: 'Create Medication Log',
+    title: 'Create a Log',
     headerLayoutPreset: 'center',
     }),
   }
 });
 
+// Stack navigator for the pet tab, only includes one page, the MyPets page.
 const PetStackNavigator = createStackNavigator({
   MyPets:{
     screen: MyPets,
@@ -184,6 +197,13 @@ const PetStackNavigator = createStackNavigator({
   },
 });
 
+/*
+  Contains a stack navigator for maintaining a consistent tab at the bottom
+  of the application including 3 tabs: Home, Pets, Settings
+
+  Pets and settings include 1 page: PetStackNavigator and Settings
+  Home includes many, all listed within HomeStackNavigator.
+*/
 export default createBottomTabNavigator({
   HomeStackNavigator: { screen: HomeStackNavigator,
     // individual tab options
@@ -209,14 +229,14 @@ export default createBottomTabNavigator({
         <Icon name="ios-settings" color = {tintColor} size={24} />
       )
   }}
-}, {//routerconfig
+}, {//routerconfig, initial route is HomeStackNavigator
   initialRouteName: 'HomeStackNavigator',
   order: ['HomeStackNavigator', 'PetStackNavigator', 'Settings'],
   //navigation options for complete tab navigator
   navigationOptions: {
     tabBarVisible: true
   },
-  // all tab options
+  // all tab options and stylings
   tabBarOptions:{
     activeTintColor:'white',
     activeBackgroundColor: '#101d26',
@@ -225,6 +245,7 @@ export default createBottomTabNavigator({
 }
 );
 
+// Styles grouped, names indicate usage
 const styles = StyleSheet.create({
   container: {
     flex: 1,

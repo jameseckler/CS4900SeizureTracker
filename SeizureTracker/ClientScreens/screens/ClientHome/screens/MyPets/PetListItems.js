@@ -4,8 +4,15 @@ import PropTypes from 'prop-types';
 import {w, h, totalSize} from "../../../../../FirebaseLogin/api/Dimensions";
 import Icon from 'react-native-vector-icons/Ionicons';
 
+/*
+  Acts as a touchable button for displaying each pet in the PetList page.
+  Displays a pet's name and passes properties through it to the function called
+  onPress. Will link to Pet Info page with all pet properties passed to that page 
+  for display.
+*/
 export default class CreateLogButton extends Component {
 
+  // Renders Touchable Opacity button 
   render() {
     return (
       <TouchableOpacity
