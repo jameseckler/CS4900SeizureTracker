@@ -19,6 +19,7 @@ import LogType from './screens/ClientHome/screens/CreateLog/screens/LogType/';
 import CreateMedLog from './screens/ClientHome/screens/CreateLog/screens/LogType/screens/CreateMedLog/';
 import CreateSeizureLog from './screens/ClientHome/screens/CreateLog/screens/LogType/screens/CreateSeizureLog/';
 import CreateOtherLog from './screens/ClientHome/screens/CreateLog/screens/LogType/screens/CreateOtherLog/';
+import LogLists from './screens/ClientHome/screens/ViewLogs/LogLists/';
 
 /*
 
@@ -177,6 +178,17 @@ const HomeStackNavigator = createStackNavigator({
       backgroundColor: '#101d26'
     },
     title: 'Create a Log',
+    headerLayoutPreset: 'center',
+    }),
+  },
+  LogLists:{
+    screen: LogLists,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'List of Logs',
     headerLayoutPreset: 'center',
     }),
   }
