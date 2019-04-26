@@ -7,7 +7,6 @@ import Settings from './screens/ClientSettings/screens';
 import {createStackNavigator} from 'react-navigation';
 import MyPets from './screens/ClientHome/screens/MyPets';
 import MyVets from './screens/ClientHome/screens/MyVets';
-import Notifications from './screens/ClientHome/screens/Notifications';
 import Info from './screens/ClientHome/screens/Info';
 import ClientHome from './screens/ClientHome/';
 import CreateLog from './screens/ClientHome/screens/CreateLog';
@@ -69,17 +68,6 @@ const HomeStackNavigator = createStackNavigator({
       backgroundColor: '#101d26'
     },
     title: 'My Vets',
-    headerLayoutPreset: 'center',
-    }),
-  },
-  Notifications:{
-    screen: Notifications,
-    navigationOptions: () => ({
-    headerTintColor: 'white',
-    headerStyle: {
-      backgroundColor: '#101d26'
-    },
-    title: 'Notifications',
     headerLayoutPreset: 'center',
     }),
   },
