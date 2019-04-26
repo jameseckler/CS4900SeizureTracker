@@ -191,6 +191,17 @@ const HomeStackNavigator = createStackNavigator({
     title: 'List of Logs',
     headerLayoutPreset: 'center',
     }),
+  },
+  LogInfo:{
+    screen: LogInfo,
+    navigationOptions: () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Log Info',
+    headerLayoutPreset: 'center',
+    }),
   }
 });
 

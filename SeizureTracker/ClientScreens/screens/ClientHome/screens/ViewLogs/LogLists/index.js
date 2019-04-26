@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Picker, KeyboardAvoidingView, DatePickerAndroid } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Picker, KeyboardAvoidingView, FlatList  } from 'react-native';
 import 'firebase/firestore';
 import * as firebase from 'firebase';
 import {w, h, totalSize} from "../../../../../../FirebaseLogin/api/Dimensions/";
 import { Header } from 'react-navigation';
 import PetListItems from '../../MyPets/PetListItems';
+import { ButtonGroup } from 'react-native-elements';
 
 const background = require('../../../../../../assets/background.png');
 
@@ -15,8 +16,8 @@ export default class LogLists extends Component{
 
         super()
         this.state = {
-            otherLogs: true,
-            seizureLogs: false,
+            otherLogs: false,
+            seizureLogs: true,
             medLogs: false,
             selectedIndex: 0,
             seizureList: [],
@@ -25,22 +26,40 @@ export default class LogLists extends Component{
         }
         this.updateIndex = this.updateIndex.bind(this)
 
+
+      }
+    
+      // On mount, gather all current user's pet's and their data
+      componentDidMount() {
+
         const { navigation } = this.props;
         const petObj = navigation.getParam('petObj', 'Error: no pet found');
 
         // Initiates current user to curUser using Firebase API call
         const curUser = firebase.auth().currentUser;
         // Gets reference to user's pet's logs based off user uid and pet name
-        this.seizureRef = firebase.firestore().collection('users').doc(curUser.uid).collection('pets').doc(petObj.name);
-      }
-    
-      // On mount, gather all current user's pet's and their data
-      componentDidMount() {
+        this.seizureRef = firebase.firestore().collection('users').doc(curUser.uid).collection('pets').doc(petObj.name).collection('seizureLogs');
+
         this.unsubscribe = this.seizureRef.onSnapshot((querySnapshot) => {
           const seizureList = [];
           querySnapshot.forEach((doc) => {
             seizureList.push({
               awakeBefore: doc.data().awakeBefore,
+              bodyBefore: doc.data().bodyBefore,
+              defBefore: doc.data().defBefore,
+              droolBefore: doc.data().droolBefore,
+              duration: doc.data().duration,
+              frontBefore: doc.data().frontBefore,
+              headBefore: doc.data().headBefore,
+              medicationAfter: doc.data().medicationAfter,
+              paddlingBefore: doc.data().paddlingBefore,
+              severityBefore: doc.data().severityBefore,
+              sideBefore: doc.data().sideBefore,
+              symptomsAfter: doc.data().symptomsAfter,
+              symptomsBefore: doc.data().symptomsBefore,
+              typeBefore: doc.data().typeBefore,
+              urineBefore: doc.data().urineBefore,
+              date: doc.data().date,
             });
           });
           this.setState({
@@ -90,10 +109,10 @@ export default class LogLists extends Component{
                 containerStyle={{height: 30}}
               />
               {   
-                  this.state.epilepsyInfo ?  
+                  this.state.seizureLogs ?  
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end', marginBottom: h(4)}}>
                     <FlatList 
-                      data = {this.state.petList}
+                      data = {this.state.seizureList}
                       // Renders each item in the petList state array by passing the pet object to PetListItems
                       renderItem = {({ item, index }) => {
                         // Returns PetListItems component which is a touchable button linking to each pet's info page
@@ -101,7 +120,23 @@ export default class LogLists extends Component{
                           <PetListItems click={()=> this.props.navigation.navigate('LogInfo', {
                             seizureLogObj: item // object contains pet fields
                           })} 
-                          
+                          name= {item.date}
+                          awakeBefore = {item.awakeBefore}
+                          date= {item.date}
+                          bodyBefore = {item.bodyBefore}
+                          defBefore = {item.defBefore}
+                          droolBefore = {item.droolBefore}
+                          duration = {item.duration}
+                          frontBefore = {item.frontBefore}
+                          headBefore = {item.headBefore}
+                          medicationAfter = {item.medicationAfter}
+                          paddlingBefore = {item.paddlingBefore}
+                          severityBefore = {item.severityBefore}
+                          sideBefore = {item.sideBefore}
+                          symptomsAfter = {item.symptomsAfter}
+                          symptomsBefore = {item.symptomsBefore}
+                          typeBefore = {item.typeBefore}
+                          urineBefore = {item.urineBefore}
                           />
                         );
                       }}
@@ -111,7 +146,7 @@ export default class LogLists extends Component{
                   : null
               }
               {
-                  this.state.seizureInfo ?  
+                  this.state.medLogs ?  
                   <KeyboardAvoidingView 
                       keyboardVerticalOffset = {Header.HEIGHT + 20} 
                       style={{flex: 1}}
@@ -125,7 +160,7 @@ export default class LogLists extends Component{
                   : null
               }
                               {
-                  this.state.treatmentInfo ? 
+                  this.state.otherLogs ? 
                   <KeyboardAvoidingView 
                       keyboardVerticalOffset = {Header.HEIGHT + 20} 
                       style={{flex: 1}}
