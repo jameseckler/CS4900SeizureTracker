@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, ImageBackground, Picker, TouchableOpacity, Keyb
 import { ButtonGroup } from 'react-native-elements';
 import 'firebase/firestore';
 import {w, h, totalSize} from "../../../../../FirebaseLogin/api/Dimensions";
-import SubmitButton from '../../screens/CreateLog/screens/LogType/components/SubmitButton';
 import { Header } from 'react-navigation';
 
 const background = require('../../../../../assets/background.png');
