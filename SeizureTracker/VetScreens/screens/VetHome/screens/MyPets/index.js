@@ -28,7 +28,14 @@ export default class MyPets extends Component{
           snap.forEach((d) => {
             
           pets.push({
-            petName: d.data().petName,
+            age: d.data().age,
+              breed: d.data().breed,
+              date: d.data().date,
+              description: d.data().description,
+              name: d.data().petName,
+              sex: d.data().sex,
+              symptoms: d.data().symptoms,
+              weight: d.data().weight,
             owner: doc.data().firstName + " " + doc.data().lastName
           });
         });
@@ -54,7 +61,18 @@ export default class MyPets extends Component{
               data = {this.state.petList}
               renderItem = {({ item, index }) => {
                 return (
-                  <PetListItems click={()=> this.props.navigation.navigate('VetHome')} text={item.petName}/>
+                  <PetListItems click={()=> this.props.navigation.navigate('PetInfo', {
+                    petObj: item // object contains pet fields
+                  })} text= {item.name} 
+                  age= {item.age}
+                  breed= {item.breed}
+                  dateString= {item.date}
+                  description= {item.description}
+                  name= {item.name}
+                  sex= {item.sex}
+                  symptoms= {item.symptoms}
+                  weight= {item.weight}
+                  />
                 );
               }}
               keyExtractor={(item, index) => index.toString()}
