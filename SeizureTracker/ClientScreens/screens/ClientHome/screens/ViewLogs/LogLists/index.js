@@ -22,6 +22,7 @@ export default class LogLists extends Component{
             selectedIndex: 0,
             seizureList: [],
             medList: [],
+            otherList: [],
             petName: '',
             petObj: '',
         }
@@ -70,7 +71,7 @@ export default class LogLists extends Component{
         })
 
         
-        // Gets reference to user's pet's logs based off user uid and pet name
+        // Gets reference to pet's med logs
         this.medRef = firebase.firestore().collection('users').doc(curUser.uid).collection('pets').doc(petObj.name).collection('medLogs');
 
         this.unsubscribe = this.medRef.onSnapshot((querySnapshot) => {
@@ -78,10 +79,34 @@ export default class LogLists extends Component{
           querySnapshot.forEach((doc) => {
             medList.push({
               description: doc.data().description,
+              date: doc.data().date,
+              medDosage: doc.data().medDosage,
+              medFreq: doc.data().medFreq,
+              medLogName: doc.data().medLogName,
+              medSide: doc.data().medSide,
             });
           });
           this.setState({
             medList: medList,
+            loading: false,
+          })
+        })
+
+
+        // Gets reference to pet's other logs
+        this.otherRef = firebase.firestore().collection('users').doc(curUser.uid).collection('pets').doc(petObj.name).collection('otherLogs');
+
+        this.unsubscribe = this.otherRef.onSnapshot((querySnapshot) => {
+          const otherList = [];
+          querySnapshot.forEach((doc) => {
+            otherList.push({
+              date: doc.data().date,
+              details: doc.data().details,
+              logType: doc.data().logType,
+            });
+          });
+          this.setState({
+            otherList: otherList,
             loading: false,
           })
         })
@@ -173,10 +198,14 @@ export default class LogLists extends Component{
                         // Returns PetListItems component which is a touchable button linking to each pet's info page
                         return (
                           <PetListItems click={()=> this.props.navigation.navigate('MedLogInfo', {
-                            seizureMedObj: item // object contains pet fields
+                            medLogObj: item // object contains pet fields
                           })} 
-                          name= {item.description}
-                          
+                          description= {item.description}
+                          name= {item.date}
+                          medDosage={item.medDosage}
+                          medFreq={item.medFreq}
+                          medLogName={item.medLogName}
+                          medSide={item.medSide}
                           />
                         );
                       }}
@@ -187,15 +216,27 @@ export default class LogLists extends Component{
               }
                               {
                   this.state.otherLogs ? 
-                  <KeyboardAvoidingView 
-                      keyboardVerticalOffset = {Header.HEIGHT + 20} 
-                      style={{flex: 1}}
-                      behavior="padding">
-                      <ScrollView>
-                          <View style={styles.container}>
-                          </View>
-                      </ScrollView>
-                  </KeyboardAvoidingView>
+                  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end', marginBottom: h(4)}}>
+                    <FlatList 
+                      data = {this.state.otherList}
+                      // Renders each item in the petList state array by passing the pet object to PetListItems
+                      renderItem = {({ item, index }) => {
+                        // Returns PetListItems component which is a touchable button linking to each pet's info page
+                        return (
+                          <PetListItems click={()=> this.props.navigation.navigate('OtherLogInfo', {
+                            otherLogObj: item // object contains pet fields
+                          })} 
+                          description= {item.description}
+                          date ={item.date} 
+                          details = {item.details}
+                          logType = {item.logType}
+                          name = {item.date}
+                          />
+                        );
+                      }}
+                      keyExtractor={(item, index) => index.toString()}
+                    />
+                  </View>
                   : null
               }
               </View>

@@ -28,8 +28,7 @@ export default class CreateMedLog extends Component{
 
         this.state = {
             petList: [],
-            date: d,
-            medDateStarted: new Date(),
+            date: d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate(),
             time: d.getTime(),
             pet: ''
         }
@@ -86,9 +85,8 @@ export default class CreateMedLog extends Component{
         const medLogName = this.medLogName.getInputValue();
         const medDosage = this.medDosage.getInputValue();
         const medFreq = this.medFreq.getInputValue();
-        const medStart = this.state.medDateStarted;
-        const medSide = this.medSide.getInputValue();
         const date = this.state.date;
+        const medSide = this.medSide.getInputValue();
         const description = this.description.getInputValue();
 
         this.setState({
@@ -98,7 +96,7 @@ export default class CreateMedLog extends Component{
         isSideCorrect: medSide === '',
         }, () => {
         if(medLogName !== '' && medDosage !== '' && medFreq !== '' && medSide !== ''  ){
-            this.addMyMed(medLogName, medDosage, medFreq, medStart, medSide, date, description);
+            this.addMyMed(medLogName, medDosage, medFreq, medSide, date, description);
             this.props.navigation.navigate('ClientHome');
         } else {
             console.warn('Fill up all fields correctly');
@@ -106,7 +104,7 @@ export default class CreateMedLog extends Component{
         })
     };
 
-    addMyMed = (medLogName, medDosage, medFreq, medStart, medSide, date, description) => {
+    addMyMed = (medLogName, medDosage, medFreq, medSide, date, description) => {
         const db = firebase.firestore();
         const curUser = firebase.auth().currentUser;
         const petRef = db.collection('users').doc(curUser.uid).collection('pets').doc(this.state.pet).collection('medLogs').doc(medLogName);
@@ -114,7 +112,6 @@ export default class CreateMedLog extends Component{
             medLogName,
             medDosage,
             medFreq,
-            medStart,
             medSide,
             date,
             description,
@@ -173,7 +170,7 @@ export default class CreateMedLog extends Component{
                 <Text style={{color:'white', fontSize: 15, marginTop: h(4)}}>When was this medication started?</Text>
                 <DatePicker
                         style={{width: 200, marginBottom: h(2)}}
-                        date={this.state.medDateStarted}
+                        date={this.state.date}
                         mode="date"
                         placeholder="select date"
                         format="YYYY-MM-DD"
@@ -196,7 +193,7 @@ export default class CreateMedLog extends Component{
                             justifyContent: 'flex-start'
                           }
                         }}
-                        onDateChange={(date) => {this.setState({medDateStarted: date})}}
+                        onDateChange={(date) => {this.setState({date: date})}}
                     />
                 <Text style={{color:'white', fontSize: 15, marginTop: h(4)}}>Have any side effects appeared?</Text>
                 <InputField

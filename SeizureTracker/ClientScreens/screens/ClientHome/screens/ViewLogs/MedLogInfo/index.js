@@ -24,20 +24,23 @@ export default class MedLogInfo extends Component{
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <View style={[styles.viewStyle, shadowStyle]}>
               <View style={{ flex: 1, alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start', marginTop: h(.5)}}>
-                  <Text style={{ color:'white', fontSize: totalSize(3)}}>Seizure Log: {medLogObj.name}</Text>
+                  <Text style={{ color:'white', fontSize: totalSize(3)}}>Medication Log: {medLogObj.description}</Text>
                   <View style={{borderBottomColor: 'white', borderBottomWidth: 1, width: '100%', marginTop: h(2)}}/>
                   <View style={{ flex: 1, alignItems: 'flex-start', flexDirection: 'row', justifyContent: 'flex-start', marginLeft: w(1.5),
                     marginTop: h(3)}}>
                     <View style={styles.row1}>
-                      <Text style={styles.textField}>Description: <Text style={styles.textCus}>{medLogObj.name}</Text> </Text>
+                        <Text style={styles.textField}>Name: <Text style={styles.textCus}>{medLogObj.medLogName}</Text> </Text>
+                        <Text style={styles.textField}>Date: <Text style={styles.textCus}>{medLogObj.date}</Text> </Text>
                     </View>
                     <View style={styles.row2}>
-
+                        <Text style={styles.textField}>Dosage: <Text style={styles.textCus}>{medLogObj.medDosage}</Text> </Text>
+                        <Text style={styles.textField}>Frequency Taken: <Text style={styles.textCus}>{medLogObj.medFreq}</Text> </Text>
                     </View>
                   </View>
                   <View style={{borderBottomColor: 'white', borderBottomWidth: 1, width: '100%', marginTop: h(12)}}/>
                   <View style={{flex: 1, flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start', marginLeft: w(1)}}>
-
+                    <Text style={styles.textField2}>Description: <Text style={styles.textCus}>{medLogObj.description}</Text></Text>
+                    <Text style={styles.textField2}>Side effects: <Text style={styles.textCus}>{medLogObj.medSide}</Text></Text>
                   </View>
               </View>
             </View>
