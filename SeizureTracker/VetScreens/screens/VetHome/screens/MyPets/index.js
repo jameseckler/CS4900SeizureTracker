@@ -26,7 +26,7 @@ export default class MyPets extends Component{
       querySnapshot.forEach((doc) => {
         firebase.firestore().collection('users').doc(doc.id).collection('pets').onSnapshot((snap) => {
           snap.forEach((d) => {
-            console.log(d.data());
+            
           pets.push({
             petName: d.data().petName,
             owner: doc.data().firstName + " " + doc.data().lastName
