@@ -1,9 +1,9 @@
 {
-  "expoServerNgrokUrl": "https://g6-ipc.anonymous.seizuretracker.exp.direct",
-  "packagerNgrokUrl": "https://packager.g6-ipc.anonymous.seizuretracker.exp.direct",
-  "ngrokPid": 15540,
+  "expoServerNgrokUrl": "https://g6-ipc.jameseckler.seizuretracker.exp.direct",
+  "packagerNgrokUrl": "https://packager.g6-ipc.jameseckler.seizuretracker.exp.direct",
+  "ngrokPid": 2724,
   "expoServerPort": 19000,
   "devToolsPort": 19002,
   "packagerPort": 19001,
-  "packagerPid": 14004
+  "packagerPid": 17140
 }

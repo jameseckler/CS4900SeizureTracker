@@ -14,7 +14,11 @@ import ViewLogs from './screens/VetHome/screens/ViewLogs';
 import {w, h, totalSize} from "../FirebaseLogin/api/Dimensions";
 import AddClient from './screens/VetHome/screens/MyClients/AddClient';
 import ClientInfo from './screens/VetHome/screens/MyClients/ClientInfo';
-import PetInfo from '../ClientScreens/screens/ClientHome/screens/MyPets/screens/PetInfo';
+import PetInfo from './screens/VetHome/screens/MyPets/screens/PetInfo';
+import LogLists from './screens/VetHome/screens/ViewLogs/LogLists';
+import MedLogInfo from './screens/VetHome/screens/ViewLogs/MedLogInfo';
+import LogInfo from './screens/VetHome/screens/ViewLogs/LogInfo';
+import OtherLogInfo from './screens/VetHome/screens/ViewLogs/OtherLogInfo';
 
 const VetStackNavigator = createStackNavigator({
   VetHome:{
@@ -113,6 +117,50 @@ const VetStackNavigator = createStackNavigator({
         backgroundColor: '#101d26'
       },
       title: 'Pet Info',
+      headerLayoutPreset: 'center',
+    }),
+  },
+  LogLists:{
+    screen: LogLists,
+    navigationOptions: () => ({
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#101d26'
+      },
+      title: 'Log Lists',
+      headerLayoutPreset: 'center',
+    }),
+  },
+  LogInfo:{
+    screen: OtherLogInfo,
+    navigationOptions: () => ({
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#101d26'
+      },
+      title: 'Log Info',
+      headerLayoutPreset: 'center',
+    }),
+  },
+  MedLogInfo:{
+    screen: MedLogInfo,
+    navigationOptions: () => ({
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#101d26'
+      },
+      title: 'Med Log Info',
+      headerLayoutPreset: 'center',
+    }),
+  },
+  OtherLogInfo:{
+    screen: OtherLogInfo,
+    navigationOptions: () => ({
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#101d26'
+      },
+      title: 'Other Log Info',
       headerLayoutPreset: 'center',
     }),
   },
