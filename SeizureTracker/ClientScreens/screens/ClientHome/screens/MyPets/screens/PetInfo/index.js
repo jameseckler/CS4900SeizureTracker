@@ -42,6 +42,7 @@ export default class PetInfo extends Component{
                       <Text style={styles.textField}>Weight: <Text style={styles.textCus}>{petObj.weight} lbs</Text> </Text>
                     </View>
                   </View>
+                  <View style={{borderBottomColor: 'white', borderBottomWidth: 1, width: '100%', marginTop: h(12)}}/>
                   <View style={{flex: 1, flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start', marginLeft: w(1)}}>
                     <Text style={styles.textField2}>Description: <Text style={styles.textBio}>{petObj.description}</Text> </Text>
                     <Text style={styles.textField3}>Symptoms: <Text style={styles.textBio}>{petObj.symptoms}</Text> </Text>
@@ -97,7 +98,7 @@ export default class PetInfo extends Component{
       fontWeight: '400',
       alignItems: 'flex-start',
       justifyContent: 'flex-start',
-      marginTop: h(5),
+      marginTop: h(1),
       marginBottom: h(3)
     },
     textField3: {

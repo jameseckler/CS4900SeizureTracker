@@ -3,8 +3,7 @@ import { StyleSheet, Text, View, ImageBackground, Picker, TouchableOpacity, Keyb
 import { ButtonGroup } from 'react-native-elements';
 import 'firebase/firestore';
 import {w, h, totalSize} from "../../../../../FirebaseLogin/api/Dimensions";
-import NextButton from '../../components/NextButton';
-import SubmitButton from '../../components/SubmitButton';
+import SubmitButton from '../../screens/CreateLog/screens/LogType/components/SubmitButton';
 import { Header } from 'react-navigation';
 
 const background = require('../../../../../assets/background.png');
@@ -16,9 +15,9 @@ export default class Info extends Component{
 
         super()
         this.state = {
-            before: true,
-            after: false,
-            during: false,
+            epilepsyInfo: true,
+            seizureInfo: false,
+            treatmentInfo: false,
             selectedIndex: 0
         }
         this.updateIndex = this.updateIndex.bind(this)
@@ -26,6 +25,21 @@ export default class Info extends Component{
 
     updateIndex (selectedIndex) {
       this.setState({selectedIndex})
+
+      if(selectedIndex === 0){
+        this.setState({epilepsyInfo: true});
+        this.setState({seizureInfo: false});
+        this.setState({treatmentInfo: false});
+      }else if(selectedIndex === 1){
+        this.setState({epilepsyInfo: false});
+        this.setState({seizureInfo: true});
+        this.setState({treatmentInfo: false});
+      }else if(selectedIndex === 2){
+        this.setState({epilepsyInfo: false});
+        this.setState({seizureInfo: false});
+        this.setState({treatmentInfo: true});
+      }
+
     }
   
     render() {
@@ -39,20 +53,20 @@ export default class Info extends Component{
                 onPress={this.updateIndex}
                 selectedIndex={selectedIndex}
                 buttons={buttons}
-                containerStyle={{height: 100}}
+                containerStyle={{height: 20}}
               />
               {   
-                  this.state.before ?  
+                  this.state.epilepsyInfo ?  
                   <KeyboardAvoidingView 
                       keyboardVerticalOffset = {Header.HEIGHT + 20} 
                       style={{flex: 1}}
                       behavior="padding">
                       <ScrollView>
                           <View style={styles.container}>
-                            <Text>
+                            <Text style={styles.questionText}>
                               What are seizures?
                             </Text>
-                            <Text>
+                            <Text style={styles.descriptionText}>
                               Seizures are one of the most frequently 
                               reported neurological conditions in dogs. 
                               A seizure may also be called a convulsion or fit, 
@@ -60,10 +74,10 @@ export default class Info extends Component{
                               normal brain function that is usually accompanied by 
                               uncontrollable muscle activity.
                             </Text>
-                            <Text>
+                            <Text style={styles.questionText}>
                               What is Epilepsy?
                             </Text>
-                            <Text>
+                            <Text style={styles.descriptionText}>
                               Epilepsy is a term used to describe 
                               repeated episodes of seizures. 
                               With epilepsy, the seizures can be single 
@@ -77,7 +91,7 @@ export default class Info extends Component{
                   : null
               }
               {
-                  this.state.during ?  
+                  this.state.seizureInfo ?  
                   <KeyboardAvoidingView 
                       keyboardVerticalOffset = {Header.HEIGHT + 20} 
                       style={{flex: 1}}
@@ -91,7 +105,7 @@ export default class Info extends Component{
                   : null
               }
                               {
-                  this.state.after ? 
+                  this.state.treatmentInfo ? 
                   <KeyboardAvoidingView 
                       keyboardVerticalOffset = {Header.HEIGHT + 20} 
                       style={{flex: 1}}
