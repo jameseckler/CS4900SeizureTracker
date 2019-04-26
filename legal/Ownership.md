@@ -1,4 +1,4 @@
-This Software Development Agreement (the “Agreement” or “Software Development Agreement”) states the terms and conditions that govern the contractual agreement between [DEVELOPER.Company] having his/her principal place of business at [DEVELOPER.Address], (the “Developer”), and [CLIENT.Company] having its principal place of business at [CLIENT.Address] (the “Client”) who agrees to be bound by this Agreement.
+This Software Development Agreement (the “Agreement” or “Software Development Agreement”) states the terms and conditions that govern the contractual agreement between Joshua Peterson/James Eckler and Lindsey Peterson having its principal place of business at who agrees to be bound by this Agreement.
 
 WHEREAS, the Client has conceptualized Pet Seizure Tracker (the “Software”), which is described in further detail on Exhibit A, and the Developer is a contractor with whom the Client has come to an agreement to develop the Software.
 
@@ -54,17 +54,6 @@ Developer
 James Eckler
 Developer
 
-[CLIENT.Company]
-
 Lindsey Peterson
-[CLIENT.Title]
+DVM
 
-EXHIBIT A
-SOFTWARE SPECIFICATIONS
-
-[FREEFORM PRODUCT FUNCTIONALITY DESCRIPTION]
-
-EXHIBIT B
-MILESTONE SCHEDULE
-
-TBD
