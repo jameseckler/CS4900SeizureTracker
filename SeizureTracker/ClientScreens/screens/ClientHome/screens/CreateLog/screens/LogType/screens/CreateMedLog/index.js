@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Picker, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Picker, KeyboardAvoidingView, Alert } from 'react-native';
 import 'firebase/firestore';
 import * as firebase from 'firebase';
 import {w, h, totalSize} from "../../../../../../../../../FirebaseLogin/api/Dimensions/";
@@ -47,6 +47,7 @@ export default class CreateMedLog extends Component{
                 pets.push({
                     petName: doc.data().petName
                 });
+                this.setState({pet: doc.data().petName})
             });
             this.setState({
                 petList: pets,

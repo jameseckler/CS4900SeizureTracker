@@ -90,6 +90,7 @@ export default class MyPets extends Component{
 
             {/* Icon that appears at bottom of PetList and links to AddPet for adding more pets */}
             <Icon
+              accessible={true} accessibilityLabel="Add a pet" accessibilityHint="Add a pet to your account"
               name = 'add-circle-outline'
               color='white'
               onPress={() => this.props.navigation.navigate('AddPet')}

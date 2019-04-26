@@ -20,7 +20,7 @@ export default class VetHome extends Component{
               style={styles.imageStyle}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('MyClients')} style={styles.rightTouchable}>
+            <TouchableOpacity accessible={true} accessibilityLabel="My Clients" accessibilityHint="View your clients and link new clients to your account" onPress={()=> this.props.navigation.navigate('MyClients')} style={styles.rightTouchable}>
               <Image 
               source = {require('../../../assets/clientsButton.png')}
               style={styles.imageStyle}
@@ -34,7 +34,7 @@ export default class VetHome extends Component{
               style={styles.imageStyle}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Info')} style={styles.rightTouchable}>
+            <TouchableOpacity accessible={true} accessibilityLabel="Epilepsy Info" accessibilityHint="Papers and useful sources on animal epilepsy" onPress={()=> this.props.navigation.navigate('Info')} style={styles.rightTouchable}>
               <Image 
               source = {require('../../../assets/infoButton.png')}
               style={styles.imageStyle}

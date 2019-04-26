@@ -14,6 +14,7 @@ import CreateLog from './screens/VetHome/screens/CreateLog';
 import ViewLogs from './screens/VetHome/screens/ViewLogs';
 import {w, h, totalSize} from "../FirebaseLogin/api/Dimensions";
 import AddPet from './screens/VetHome/screens/MyPets/screens/AddPet';
+import AddClient from './screens/VetHome/screens/MyClients/AddClient';
 
 const VetStackNavigator = createStackNavigator({
   VetHome:{
@@ -103,18 +104,29 @@ const VetStackNavigator = createStackNavigator({
     title: 'Add Pet',
     headerLayoutPreset: 'center',
     }),
+  },
+  AddClient:{
+    screen: AddClient,
+    navigationOptions: () => ({
+      headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#101d26'
+    },
+    title: 'Add Client',
+    headerLayoutPreset: 'center',
+    })
   }
 });
 
-const PetStackNavigator = createStackNavigator({
+const ClientStackNavigator = createStackNavigator({
   MyPets:{
-    screen: MyPets,
+    screen: MyClients,
     navigationOptions: () => ({
       headerTintColor: 'white',
       headerStyle: {
         backgroundColor: '#101d26'
       },
-      title: 'Pet List',
+      title: 'Client List',
       headerLayoutPreset: 'center',
       }),
   },
@@ -129,7 +141,7 @@ export default createBottomTabNavigator({
         <Icon name="ios-home" color = {tintColor} size={24} />
       )
   }},
-  PetStackNavigator: { screen: PetStackNavigator,
+  ClientStackNavigator: { screen: ClientStackNavigator,
     // individual tab options
     navigationOptions: {
       tabBarLabel: 'Clients',
@@ -147,7 +159,7 @@ export default createBottomTabNavigator({
   }}
 }, {//routerconfig
   initialRouteName: 'VetStackNavigator',
-  order: ['VetStackNavigator', 'PetStackNavigator', 'Settings'],
+  order: ['VetStackNavigator', 'ClientStackNavigator', 'Settings'],
   //navigation options for complete tab navigator
   navigationOptions: {
     tabBarVisible: true
