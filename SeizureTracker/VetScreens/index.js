@@ -16,7 +16,6 @@ import {w, h, totalSize} from "../FirebaseLogin/api/Dimensions";
 import AddClient from './screens/VetHome/screens/MyClients/AddClient';
 import ClientInfo from './screens/VetHome/screens/MyClients/ClientInfo';
 import PetInfo from '../ClientScreens/screens/ClientHome/screens/MyPets/screens/PetInfo';
-import ClientSearch from './screens/VetHome';
 
 const VetStackNavigator = createStackNavigator({
   VetHome:{
@@ -126,17 +125,6 @@ const VetStackNavigator = createStackNavigator({
         backgroundColor: '#101d26'
       },
       title: 'Pet Info',
-      headerLayoutPreset: 'center',
-    }),
-  },
-  ClientSearch:{
-    screen: ClientSearch,
-    navigationOptions: () => ({
-      headerTintColor: 'white',
-      headerStyle: {
-        backgroundColor: '#101d26'
-      },
-      title: 'Client Search',
       headerLayoutPreset: 'center',
     }),
   },
