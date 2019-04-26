@@ -41,20 +41,6 @@ export default class VetHome extends Component{
               />
             </TouchableOpacity>
           </View>
-          <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <InputField
-                      placeholder="Search for pets..."
-                      autoCapitalize="words"
-                      style={styles.input}
-            />
-          </View>
-          <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <InputField
-                      placeholder="Search for clients..."
-                      autoCapitalize="words"
-                      style={styles.input}
-            />
-          </View>
         </View>
 
       </ImageBackground>
