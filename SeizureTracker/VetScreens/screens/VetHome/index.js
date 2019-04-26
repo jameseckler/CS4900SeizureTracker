@@ -28,13 +28,8 @@ export default class VetHome extends Component{
             </TouchableOpacity>
           </View>
           <View style={{justifyContent:'center', alignItems: 'center', flexDirection: 'row', marginTop: h(2)}}>
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Notifications') } style={styles.leftTouchable} >
-              <Image 
-              source = {require('../../../assets/comButton.png')}
-              style={styles.imageStyle}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity accessible={true} accessibilityLabel="Epilepsy Info" accessibilityHint="Papers and useful sources on animal epilepsy" onPress={()=> this.props.navigation.navigate('Info')} style={styles.rightTouchable}>
+            
+            <TouchableOpacity accessible={true} accessibilityLabel="Epilepsy Info" accessibilityHint="Papers and useful sources on animal epilepsy" onPress={()=> this.props.navigation.navigate('Info')} style={{alignSelf:'center'}}>
               <Image 
               source = {require('../../../assets/infoButton.png')}
               style={styles.imageStyle}

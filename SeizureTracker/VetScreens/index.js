@@ -7,7 +7,6 @@ import Settings from './screens/ClientSettings/screens';
 import {createStackNavigator} from 'react-navigation';
 import MyPets from './screens/VetHome/screens/MyPets';
 import MyClients from './screens/VetHome/screens/MyClients';
-import Notifications from './screens/VetHome/screens/Notifications';
 import Info from '../ClientScreens/screens/ClientHome/screens/Info';
 import VetHome from './screens/VetHome/';
 import CreateLog from './screens/VetHome/screens/CreateLog';
@@ -48,17 +47,6 @@ const VetStackNavigator = createStackNavigator({
       backgroundColor: '#101d26'
     },
     title: 'My Clients',
-    headerLayoutPreset: 'center',
-    }),
-  },
-  Notifications:{
-    screen: Notifications,
-    navigationOptions: () => ({
-    headerTintColor: 'white',
-    headerStyle: {
-      backgroundColor: '#101d26'
-    },
-    title: 'Client Calendar',
     headerLayoutPreset: 'center',
     }),
   },

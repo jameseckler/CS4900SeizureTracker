@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, ImageBackground, Picker, TouchableOpacity, Keyb
 import { ButtonGroup } from 'react-native-elements';
 import 'firebase/firestore';
 import {w, h, totalSize} from "../../../../../FirebaseLogin/api/Dimensions";
-import SubmitButton from '../../screens/CreateLog/screens/LogType/components/SubmitButton';
 import { Header } from 'react-navigation';
 
 const background = require('../../../../../assets/background.png');
@@ -43,7 +42,7 @@ export default class Info extends Component{
     }
   
     render() {
-      const buttons = ['Epilepsy', 'Seizures', 'Treatment'];
+      const buttons = ['Epilepsy', 'Seizures'];
       const { selectedIndex } = this.state;
       return(
           <ImageBackground source={background} style={{width: '100%', height: '100%'}}> 
@@ -98,26 +97,27 @@ export default class Info extends Component{
                       behavior="padding">
                       <ScrollView>
                           <View style={styles.container}>
-                              
-                          </View>
-                      </ScrollView>
-                  </KeyboardAvoidingView>
-                  : null
-              }
-                              {
-                  this.state.treatmentInfo ? 
-                  <KeyboardAvoidingView 
-                      keyboardVerticalOffset = {Header.HEIGHT + 20} 
-                      style={{flex: 1}}
-                      behavior="padding">
-                      <ScrollView>
-                          <View style={styles.container}>
-                              <Image style={styles.icon2} resizeMode="contain" source={after}/>
-                              <View style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', backgroundColor: '#101d26', borderColor: 'white'}}>  
-                                  <Text style={{color:'white', fontSize: 18, marginTop: h(2), marginBottom: h(2), textAlign: "center"}}>
-                                  Please fill in all post-seizure information you are able: </Text>
-                              </View>
-                              <SubmitButton click={() => this.submitAll()} />
+                              <Text style={styles.questionText}>
+                                What do I do if my pet has a seizure?
+                              </Text>
+                              <Text style={styles.descriptionText}>
+                                Firstly, remain calm. Cats and dogs do not swallow their tongues, so you should not try to hold their tongue during the seizure. If the seizure 
+                                occurs near a dangerous area such as stairs or a ledge, gently move them from the area.  
+                                Know that your pet is not in pain or even conscious during the seizure, and that they may urinate or deficate.
+                                </Text>
+                                <Text style={styles.descriptionText}>
+                                Try to commit to memory details such as the time of the seizure and how long it lasts. When creating logs in this application, you will 
+                                be given a series of questions that your veterinarian can use to help create a treatment plan for your pet, so knowing the answers to these questions is helpful. 
+                                You should create the seizure log as soon as you can, as details will be harder to remember the longer you wait.
+                              </Text>
+                              <Text style={styles.questionText}>
+                                What should I do after the seizure?
+                              </Text>
+                              <Text style={styles.descriptionText}>
+                                Contact your veterinarian as soon as possible. Seizures longer than 2-3 minutes may lead to hyperthermia, be ready with cold water or a wet towel 
+                                and apply around your pet's body to help them cool down. If the seizure is longer than five minutes or if a second seizure occurs before complete 
+                                consciousness, get emergency help for your pet immediately.
+                              </Text>
                           </View>
                       </ScrollView>
                   </KeyboardAvoidingView>
